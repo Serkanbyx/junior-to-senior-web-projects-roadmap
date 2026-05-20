@@ -3,7 +3,7 @@
 > A two-player Tic Tac Toe game in the browser with win and draw detection.
 
 **Level:** 1 &nbsp;·&nbsp; **Status:** ✅ Built
-&nbsp;·&nbsp; [Live Demo](#) &nbsp;·&nbsp; [Source Code](#)
+&nbsp;·&nbsp; [Live Demo](https://tic-tac-toeeeeeeeeee.netlify.app/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/tic-tac-toe)
 
 ---
 
