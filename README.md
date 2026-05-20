@@ -133,24 +133,24 @@ MongoDB, Express, React, Node — end to end. This is the level that takes you f
 
 | Project | What you'll build | Guide | Links |
 |---------|-------------------|-------|-------|
-| ✅ To-Do MERN | Full CRUD across React + Express + Mongo | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Notes MERN | Auth + notes, fullstack data flow | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Simple Blog MERN | Posts, routing, fullstack rendering | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Weather App with Login | Auth-gated API consumption | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ User Authentication System | JWT + bcrypt, refresh tokens, protected UI | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Expense Tracker | Mongo aggregation + chart visualization | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Blog with Comments & Likes | Relations, nested resources, optimistic UI | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Recipe App MERN | CRUD + search + favorites, fullstack | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Movie Database | External API + user-saved favorites | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Portfolio w/ Admin Panel | Public site + protected CMS | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Event Booking System | Bookings, availability, email confirmations | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Job Board | Multi-role dashboards, applications | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Chat App | Realtime messaging + notification system | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Social Media Platform | Follow graph, feed, notifications | [Guide](./docs/level-4/lms.md) | [Code](#) · [Demo](#) |
-| ✅ LMS | Courses, quizzes, progress tracking, roles | [Guide](./docs/level-4/lms.md) | [Code](#) · [Demo](#) |
-| ✅ Video Streaming Platform | Upload, streaming, transcoding basics | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Online Code Editor | Monaco editor + realtime collaboration | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ SaaS Dashboard Template | Multi-tenant patterns, billing-ready UI | [Guide](#) | [Code](#) · [Demo](#) |
+| ✅ To-Do MERN | Full CRUD across React + Express + Mongo | [Guide](#) | [Code](https://github.com/Serkanbyx/to-do-mern) · [Demo](https://to-do-mernn.netlify.app/login) |
+| ✅ Notes MERN | Auth + notes, fullstack data flow | [Guide](#) | [Code](https://github.com/Serkanbyx/notes-mern) · [Demo](https://notes-mernn.netlify.app/) |
+| ✅ Simple Blog MERN | Posts, routing, fullstack rendering | [Guide](#) | [Code](https://github.com/Serkanbyx/simple-blog-mern) · [Demo](https://simple-blog-mernn.netlify.app/) |
+| ✅ Weather App with Login | Auth-gated API consumption | [Guide](#) | [Code](https://github.com/Serkanbyx/weather-app-with-login) · [Demo](https://weather-mern.netlify.app/) |
+| ✅ User Authentication System | JWT + bcrypt, refresh tokens, protected UI | [Guide](#) | [Code](https://github.com/Serkanbyx/user-authentication-system) · [Demo](https://user-authentication-systemm.netlify.app/) |
+| ✅ Expense Tracker | Mongo aggregation + chart visualization | [Guide](#) | [Code](https://github.com/Serkanbyx/expense-tracker-mern) · [Demo](https://expense-tracker-mernn.netlify.app/) |
+| ✅ Blog with Comments & Likes | Relations, nested resources, optimistic UI | [Guide](#) | [Code](https://github.com/Serkanbyx/blog-mern) · [Demo](https://blog-mernn.netlify.app/) |
+| ✅ Recipe App MERN | CRUD + search + favorites, fullstack | [Guide](#) | [Code](https://github.com/Serkanbyx/recipe-mern) · [Demo](https://recipe-mernn.netlify.app/) |
+| ✅ Movie Database | External API + user-saved favorites | [Guide](#) | [Code](https://github.com/Serkanbyx/movie-database) · [Demo](https://movie-databasee.netlify.app/) |
+| ✅ Portfolio w/ Admin Panel | Public site + protected CMS | [Guide](#) | [Code](https://github.com/Serkanbyx/portfolio-with-admin-panel) · [Demo](https://portfolio-with-admin-panel.netlify.app/) |
+| ✅ Event Booking System | Bookings, availability, email confirmations | [Guide](#) | [Code](https://github.com/Serkanbyx/event-booking-system) · [Demo](https://event-booking-systemm.netlify.app/) |
+| ✅ Job Board | Multi-role dashboards, applications | [Guide](#) | [Code](https://github.com/Serkanbyx/job-board-with-company-user-dashboard) · [Demo](https://job-board-with-company-user-dashboard.netlify.app/) |
+| ✅ Chat App | Realtime messaging + notification system | [Guide](#) | [Code](https://github.com/Serkanbyx/chat-app-mern) · [Demo](https://chat-app-mernn.netlify.app/) |
+| ✅ Social Media Platform | Follow graph, feed, notifications | [Guide](./docs/level-4/lms.md) | [Code](https://github.com/Serkanbyx/social-media-platform) · [Demo](https://social-media-platformm.netlify.app/) |
+| ✅ LMS | Courses, quizzes, progress tracking, roles | [Guide](./docs/level-4/lms.md) | [Code](https://github.com/Serkanbyx/lms-mern) · [Demo](https://lms-mernn.netlify.app/) |
+| ✅ Video Streaming Platform | Upload, streaming, transcoding basics | [Guide](#) | [Code](https://github.com/Serkanbyx/video-streaming-platform) · [Demo](https://video-streaming-platformm.netlify.app/) |
+| ✅ Online Code Editor | Monaco editor + realtime collaboration | [Guide](#) | [Code](https://github.com/Serkanbyx/online-code-editor) · [Demo](https://online-code-editorr.netlify.app/) |
+| ✅ SaaS Dashboard Template | Multi-tenant patterns, billing-ready UI | [Guide](#) | [Code](https://github.com/Serkanbyx/saas-dashboard-template) · [Demo](https://saas-dashboard-template.netlify.app/) |
 
 ## Level 5 — Senior-Level Systems
 
