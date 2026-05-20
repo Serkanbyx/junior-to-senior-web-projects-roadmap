@@ -65,17 +65,17 @@ fluent in the language and the browser before adding any abstraction.
 
 | Project | What you'll build | Guide | Links |
 |---------|-------------------|-------|-------|
-| ✅ Tic Tac Toe | Game state, win detection, click-driven DOM | [Guide](./docs/level-1/tic-tac-toe.md) | [Code](#) · [Demo](#) |
-| ✅ Basic Calculator | Input handling, operations, UI state | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Type Speed Test | Timers, keyboard events, WPM calculation | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Memory Game | Array shuffling, match logic, flip animation | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Countdown Timer | `setInterval`, date math, formatting | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ BMI Calculator | Form input, validation, formula output | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Quote Generator | Data arrays, random selection, share action | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Simple To-Do List | In-memory CRUD, list rendering, filtering | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Photo Gallery | Grid layout, lightbox modal, lazy loading | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Personal Portfolio Website | Responsive layout, semantic HTML, CSS craft | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Weather App (Basic) | Static UI, layout, conditional rendering | [Guide](#) | [Code](#) · [Demo](#) |
+| ✅ Tic Tac Toe | Game state, win detection, click-driven DOM | [Guide](./docs/level-1/tic-tac-toe.md) | [Code](https://github.com/Serkanbyx/tic-tac-toe) · [Demo](https://tic-tac-toeeeeeeeeee.netlify.app/) |
+| ✅ Basic Calculator | Input handling, operations, UI state | [Guide](#) | [Code](https://github.com/Serkanbyx/basic-calculator) · [Demo](https://basic-calculatorrrr.netlify.app/) |
+| ✅ Type Speed Test | Timers, keyboard events, WPM calculation | [Guide](#) | [Code](https://github.com/Serkanbyx/type-speed-test) · [Demo](https://type-speed-testt.netlify.app/) |
+| ✅ Memory Game | Array shuffling, match logic, flip animation | [Guide](#) | [Code](https://github.com/Serkanbyx/memory-game) · [Demo](https://memory-gameeeeee.netlify.app/) |
+| ✅ Countdown Timer | `setInterval`, date math, formatting | [Guide](#) | [Code](https://github.com/Serkanbyx/countdown-timer) · [Demo](https://countdown-timerrrr.netlify.app/) |
+| ✅ BMI Calculator | Form input, validation, formula output | [Guide](#) | [Code](https://github.com/Serkanbyx/BMI-calculator) · [Demo](https://bmi-calculatorrrrr.netlify.app/) |
+| ✅ Quote Generator | Data arrays, random selection, share action | [Guide](#) | [Code](https://github.com/Serkanbyx/quote-generator) · [Demo](https://quote-generatorrrrr.netlify.app/) |
+| ✅ Simple To-Do List | In-memory CRUD, list rendering, filtering | [Guide](#) | [Code](https://github.com/Serkanbyx/simple-to-do-list) · [Demo](https://simple-to-do-listt.netlify.app/) |
+| ✅ Photo Gallery | Grid layout, lightbox modal, lazy loading | [Guide](#) | [Code](https://github.com/Serkanbyx/photo-gallery) · [Demo](https://photo-galleryyyyy.netlify.app/) |
+| ✅ Personal Portfolio Website | Responsive layout, semantic HTML, CSS craft | [Guide](#) | [Code](https://github.com/Serkanbyx/personal-portfolio-website) · [Demo](https://personal-portfolio-websiteee.netlify.app/) |
+| ✅ Weather App (Basic) | Static UI, layout, conditional rendering | [Guide](#) | [Code](https://github.com/Serkanbyx/weather-app-basic) · [Demo](https://weather-app-basicc.netlify.app/) |
 
 ## Level 2 — Intermediate Frontend
 
