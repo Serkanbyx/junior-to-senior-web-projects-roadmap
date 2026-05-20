@@ -1,6 +1,6 @@
 # Notes App
 
-> A note-taking app with Markdown support, tagging system, auto-save, and full-text search.
+> A responsive note-taking app with Markdown rendering (react-markdown + remark-gfm), tagging system, auto-save, and Zustand persistence.
 
 **Level:** 2 &nbsp;·&nbsp; **Status:** ✅ Built
 &nbsp;·&nbsp; [Live Demo](https://notes-web-apppp.netlify.app/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/notes-web-app)
@@ -9,42 +9,39 @@
 
 ## Purpose
 
-This project teaches you to build a content-rich CRUD app with structured data relationships
-(notes ↔ tags). You'll implement Markdown parsing, auto-save with debouncing, and a tagging
-system that lets users organize content without rigid folders. The search feature introduces
-client-side full-text filtering across multiple fields — title, body, and tags simultaneously.
+This project teaches you to build a content creation tool with live Markdown preview.
+Notes are written in Markdown and rendered as rich HTML in real-time. Combined with a
+tagging system and auto-save, it's a productivity tool you might actually use daily.
+It introduces the pattern of separating input format (Markdown) from display format (HTML).
 
 ## Tech Stack
 
-- **Frontend:** React 18, TypeScript, Tailwind CSS
-- **Backend:** none
-- **Database:** LocalStorage (via Zustand persist)
-- **Key libraries / tools:** Zustand, Markdown parser (marked or react-markdown)
+- **Framework:** React 18, TypeScript, Vite
+- **Styling:** Tailwind CSS
+- **State:** Zustand with localStorage persistence
+- **Markdown:** react-markdown + remark-gfm (GitHub Flavored Markdown)
+- **Forms:** React Hook Form + Zod
+- **Icons:** Lucide React
 - **Deployment:** Netlify
 
 ## Build Steps
 
-1. **Model a note.** Define the shape: `{ id, title, body (markdown), tags: string[], createdAt, updatedAt }`. Create a Zustand store with CRUD operations and persist to LocalStorage.
-2. **Build the notes list.** A sidebar showing all notes sorted by last updated. Each item shows the title, first line preview, date, and tag badges. Highlight the currently selected note.
-3. **Implement the editor.** A split or togglable view: edit mode (textarea for raw Markdown) and preview mode (rendered Markdown). Use a Markdown library to parse and render. Support common syntax: headings, bold, italic, code blocks, links, lists.
-4. **Add auto-save.** Debounce save operations (500ms after the user stops typing). Show a subtle "saving..." / "saved" indicator. Never lose work — persist on every meaningful change and on `beforeunload`.
-5. **Build the tagging system.** An input that creates tags on Enter or comma. Display tags as colored badges on each note. Allow filtering the note list by tag (click a tag to filter). Support removing tags inline.
-6. **Implement search.** A search bar that filters notes by matching the query against title, body content, and tags simultaneously. Highlight matching text in results. Use `String.includes()` or a simple scoring algorithm for relevance.
-7. **Add note management.** Delete with confirmation, pin important notes to the top, duplicate a note, and export individual notes as `.md` files.
+1. **Build the note model in Zustand.** Note: `{ id, title, content (Markdown), tags: string[], createdAt, updatedAt }`. Persisted to localStorage. CRUD actions.
 
-## Deployment
+2. **Build the Markdown editor.** A split-pane view: textarea on the left (raw Markdown input), rendered preview on the right (react-markdown output). Live preview updates as you type.
 
-Deploy on Netlify as a static app. No backend or environment variables needed.
-All persistence is client-side via LocalStorage.
+3. **Configure react-markdown + remark-gfm.** GFM adds: tables, strikethrough, task lists, and autolinks. These render correctly in the preview without any extra work.
+
+4. **Implement the tagging system.** Add/remove tags per note. Tag input with autocomplete from existing tags. Filter notes by tag in the sidebar. Color-coded tag badges.
+
+5. **Add auto-save.** Debounce content changes (500ms). On each debounced trigger, update the note in Zustand (which persists to localStorage). Show "saved" indicator. No manual save button needed.
+
+6. **Build the note list sidebar.** List all notes with title and date. Search across titles and content. Sort by recently modified. Click to load in editor.
+
+7. **Deploy on Netlify.** Static site. All data lives in localStorage — no backend needed.
 
 ## Tips
 
-- Auto-save needs debouncing, not throttling. Debouncing waits until the user pauses; throttling would save mid-keystroke which can cause jank if serialization is slow.
-- For Markdown rendering, `react-markdown` with `remark-gfm` gives you GitHub-Flavored Markdown (tables, task lists, strikethrough) with zero configuration.
-- Extension: add note folders/categories, Markdown export as PDF, or sync across devices with a simple backend.
-
-## README Guidance
-
-The project repo's README should include a short description, screenshots showing the editor
-and preview mode, the live demo link, tech stack, features list (Markdown, tags, auto-save,
-search), and local dev instructions.
+- react-markdown renders Markdown to React components (not raw HTML). This is safer than `dangerouslySetInnerHTML` — no XSS risk from Markdown content.
+- Auto-save with debounce: use a `useEffect` with a timer. On every content change, reset the timer. When the timer fires (no changes for 500ms), persist. This prevents saving on every keystroke.
+- Extension: add note folders/notebooks, Markdown toolbar buttons, export as PDF, or sync across devices (would need a backend).

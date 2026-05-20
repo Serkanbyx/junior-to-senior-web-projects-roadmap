@@ -1,51 +1,58 @@
 # Contact Form API
 
-> A backend for contact forms with email sending via Nodemailer and database storage for message history.
+> A production-ready Contact Form REST API with email notifications, SQLite storage, rate limiting, and Swagger documentation.
 
 **Level:** 3 &nbsp;·&nbsp; **Status:** ✅ Built
-&nbsp;·&nbsp; [Live Demo](https://contact-form-api-woaf.onrender.com/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/contact-form-api)
+&nbsp;·&nbsp; [Live Demo](https://contact-form-api-k26g.onrender.com/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/contact-form-api)
 
 ---
 
 ## Purpose
 
-Every website needs a contact form, and this project teaches you how to handle the backend:
-receive form data, validate it, send an email notification, and store the message for later
-review. It introduces Nodemailer for SMTP email sending, environment-based configuration for
-email credentials, and the pattern of "process then persist" — doing the important action
-(email) and the storage in the right order with proper error handling.
+Every website needs a contact form. This project teaches you to build the backend for one:
+receive form submissions, validate them, store them in a database, and send email notifications
+to the site owner. It introduces Nodemailer for transactional email — a skill you'll use in
+every project that sends emails (verification, password reset, notifications).
 
 ## Tech Stack
 
-- **Frontend:** none (API only)
-- **Backend:** Node.js, Express
-- **Database:** MongoDB (Mongoose)
-- **Key libraries / tools:** Nodemailer (SMTP email), express-validator, dotenv
+- **Runtime:** Node.js
+- **Framework:** Express 5
+- **Database:** SQLite (better-sqlite3)
+- **Email:** Nodemailer
+- **Validation:** express-validator
+- **Security:** Helmet 8, express-rate-limit
+- **Documentation:** Swagger (swagger-jsdoc + swagger-ui-express)
 - **Deployment:** Render.com
 
 ## Build Steps
 
-1. **Design the endpoint.** `POST /contact` accepts `{ name, email, subject, message }`. Validate all fields: email format, name and message non-empty, subject max length. Return 400 with specific errors on failure.
-2. **Configure Nodemailer.** Create a transporter with SMTP credentials (Gmail, SendGrid, or Mailtrap for testing). Store host, port, user, and password in environment variables. Never hardcode credentials.
-3. **Build the email template.** Compose an HTML email with the contact form data: sender's name, email, subject, and message body. Include a plain-text fallback. Set proper `from`, `to`, and `replyTo` headers.
-4. **Send the email.** On successful validation, call `transporter.sendMail()`. Handle SMTP errors gracefully — if email sending fails, still store the message in the DB and return a partial success response.
-5. **Store in database.** Save every submission to MongoDB: `{ name, email, subject, message, emailSent: boolean, createdAt }`. This creates an audit trail and lets you retry failed emails later.
-6. **Add rate limiting.** Prevent spam by limiting submissions per IP (e.g. 5 per hour). Use express-rate-limit on the contact endpoint specifically. Return 429 with a "try again later" message.
-7. **Build an admin endpoint.** `GET /contact/messages` (protected) returns all stored messages with pagination. This lets you review submissions even if emails were missed.
+1. **Design the submissions table.** Schema: `id, name, email, subject, message, status ('new'|'read'|'replied'), created_at`. All fields required except subject. Store every submission for record-keeping.
+
+2. **Build the submission endpoint.** `POST /contact` accepts name, email, subject, and message. Validate all fields (email format, message length). Store in SQLite. Return 201 Created with the submission ID.
+
+3. **Configure Nodemailer.** Set up a transporter with SMTP credentials (Gmail, Outlook, or a transactional service like SendGrid). On new submission, send an email to the site owner with the form data formatted in a clean HTML template.
+
+4. **Add rate limiting.** Contact forms are spam targets. Apply strict rate limiting: max 5 submissions per IP per hour. Use express-rate-limit with a clear error message: "Too many submissions, please try again later."
+
+5. **Build admin endpoints.** `GET /contacts` (list all submissions with pagination), `GET /contacts/:id` (single submission), `PATCH /contacts/:id` (update status to read/replied). These could be protected with a simple API key or basic auth.
+
+6. **Add Helmet security.** Apply all Helmet defaults for security headers. Combined with rate limiting and input validation, this creates a production-ready endpoint safe to expose publicly.
+
+7. **Deploy to Render.** Set SMTP credentials as environment variables. SQLite stores submissions persistently. Rate limiter state resets on deploy (acceptable for this scale).
 
 ## Deployment
 
-Deploy on Render.com. Set environment variables: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`,
-`SMTP_PASS`, `CONTACT_EMAIL` (recipient), and `MONGODB_URI`. Use Mailtrap for testing
-to avoid sending real emails during development.
+Deploy on Render.com. Set `SMTP_HOST`, `SMTP_USER`, `SMTP_PASS`, `NOTIFY_EMAIL` in
+environment variables.
 
 ## Tips
 
-- Use Mailtrap or Ethereal Email for development — they catch all outgoing emails without delivering them. Switch to a real SMTP provider (SendGrid, Mailgun) only in production.
-- Always set `replyTo` to the sender's email so when you reply to the notification, it goes to the person who submitted the form.
-- Extension: add file attachments (combine with the File Upload API project), email templates with HTML/CSS, or a webhook notification to Slack/Discord.
+- Nodemailer with Gmail requires an "App Password" (not your regular password) if 2FA is enabled. For production, use a transactional email service (SendGrid, Mailgun) — they have better deliverability and don't hit Gmail's sending limits.
+- Rate limiting the contact endpoint is critical. Without it, bots will flood your inbox with thousands of spam submissions. 5 per hour per IP is reasonable for legitimate users.
+- Extension: add CAPTCHA verification, auto-reply to the submitter, attachment support, or a spam scoring system.
 
 ## README Guidance
 
-The project repo's README should include a description, the endpoint spec, environment
-variables list with descriptions, a note about SMTP providers, and local setup steps.
+The project repo's README should include a description, API endpoints, email setup
+instructions, rate limiting details, tech stack, and setup instructions.

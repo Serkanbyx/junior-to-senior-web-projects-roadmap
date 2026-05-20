@@ -1,6 +1,6 @@
 # Video Streaming Platform
 
-> A fullstack video platform with upload, streaming, basic transcoding, and a content library.
+> A fullstack video platform with FFmpeg HLS transcoding, adaptive streaming, TypeScript monorepo with shared Zod schemas, and brutalist glitch-aesthetic UI.
 
 **Level:** 4 &nbsp;·&nbsp; **Status:** ✅ Built
 &nbsp;·&nbsp; [Live Demo](https://video-streaming-platformm.netlify.app/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/video-streaming-platform)
@@ -9,41 +9,54 @@
 
 ## Purpose
 
-Video is the most complex media type on the web. This project teaches you to handle large
-file uploads, stream video with range requests (so users can seek), and manage a media library
-with metadata. It introduces concepts like chunked uploads, HLS streaming, and the difference
-between downloading and streaming — skills relevant to any media-heavy platform.
+Video is the most complex media type on the web. This project teaches you real video
+engineering: upload raw videos, transcode them server-side with FFmpeg into HLS (HTTP Live
+Streaming) format, and stream adaptively to the client with HLS.js. The TypeScript monorepo
+with shared Zod schemas ensures end-to-end type safety. This is the architecture behind
+YouTube, Twitch, and Netflix.
 
 ## Tech Stack
 
-- **Frontend:** React, TypeScript, Tailwind CSS
-- **Backend:** Node.js, Express, MongoDB (Mongoose)
-- **Auth:** JWT
-- **Key libraries / tools:** Multer (upload), ffmpeg (transcoding), HTML5 Video API, Cloudinary or local storage
-- **Deployment:** Netlify (frontend) + Render (backend)
+- **Frontend:** React 19, TypeScript, Vite 6, Tailwind CSS 4, React Router 7, TanStack React Query
+- **Backend:** Node.js, Express 5, TypeScript, MongoDB (Mongoose 8), Socket.io 4
+- **Video:** FFmpeg (fluent-ffmpeg) for HLS transcoding, HLS.js + React Player for playback
+- **Monorepo:** Shared Zod schemas (`shared/` package) for end-to-end validation
+- **Auth:** JWT + bcryptjs
+- **File storage:** Cloudinary + Multer + Streamifier
+- **Security:** Helmet, express-rate-limit, express-mongo-sanitize
+- **API docs:** Swagger
+- **Deployment:** Fly.io (backend, Dockerized) + Netlify (frontend)
 
 ## Build Steps
 
-1. **Build video upload.** Large file upload with progress indicator. Use Multer with a size limit (100MB+). Store videos in cloud storage (Cloudinary) or local disk. Save metadata to MongoDB: `{ title, description, filename, url, duration, thumbnail, author }`.
-2. **Implement video streaming.** Serve video with HTTP Range requests (`206 Partial Content`). This enables seeking — the browser requests only the bytes it needs. Set proper `Content-Range` and `Accept-Ranges` headers.
-3. **Generate thumbnails.** On upload, use ffmpeg to extract a frame (at the 5-second mark) as the video thumbnail. Store it alongside the video. Show thumbnails in the video library grid.
-4. **Build the video library.** A grid of video cards with thumbnail, title, duration, author, and view count. Pagination and search. Category/tag filtering.
-5. **Build the video player page.** A custom video player (HTML5 `<video>` with custom controls) or a library like Video.js. Show title, description, author info, and related videos sidebar.
-6. **Add view tracking and engagement.** Increment view count on play (debounce to avoid counting refreshes). Add like/dislike. Show view count and engagement on each video.
-7. **Build the creator dashboard.** Users can manage their uploaded videos: view analytics (views, likes), edit metadata, delete videos. Show upload progress during new uploads.
+1. **Set up the TypeScript monorepo.** Three packages: `client/`, `server/`, and `shared/`. The shared package exports Zod schemas for validation — same schema validates on both client (form submission) and server (API input). `tsconfig.base.json` at root with project references.
+
+2. **Build video upload with progress.** Large file upload via Multer. Show upload progress on the frontend. Store the raw file temporarily. Save metadata to MongoDB: `{ title, description, filename, url, duration, thumbnail, author, views }`. File size limits and MIME type validation.
+
+3. **Implement FFmpeg HLS transcoding.** After upload, run `fluent-ffmpeg` to convert the raw video into HLS format (`.m3u8` playlist + `.ts` segments). This enables adaptive bitrate streaming — the player automatically switches quality based on network speed. Store transcoded output.
+
+4. **Build the HLS video player.** Use `hls.js` with React Player on the frontend. HLS.js handles the `.m3u8` manifest, fetches segments on demand, and adapts quality. The player supports seeking, fullscreen, and quality switching — all built into the HLS protocol.
+
+5. **Build the video library.** Grid of video cards with thumbnails (extracted from video or auto-generated), title, duration, view count, and author. Pagination and search. Category filtering. TanStack Query handles caching and background refetching.
+
+6. **Build creator features.** Upload management dashboard: view own videos with analytics (views, likes). Edit video metadata. Delete videos (cascade deletes transcoded files). Video management CRUD with creator-only authorization.
+
+7. **Add shared Zod schemas and deploy.** Zod schemas in `shared/`: validate video upload form on client before sending, validate same data on server. If schemas change, TypeScript errors appear in both packages immediately. Deploy: Dockerized backend on Fly.io, frontend on Netlify.
 
 ## Deployment
 
-Backend on Render. For video storage, use Cloudinary's video API or a cloud storage bucket.
-Render's disk is ephemeral. Frontend on Netlify with `VITE_API_URL`.
+Backend Dockerized and deployed on Fly.io (with `fly.toml` and `Dockerfile`). FFmpeg must
+be available in the Docker image. Frontend on Netlify. Cloudinary for file storage.
 
 ## Tips
 
-- Range requests are what make video seeking work. Without them, the browser must download the entire file before playing. Always support `Range` headers for media endpoints.
-- ffmpeg is powerful but heavy. For thumbnail generation, use the simplest command: `ffmpeg -i input.mp4 -ss 00:00:05 -vframes 1 thumbnail.jpg`. Install it on your server or use a cloud transcoding service.
-- Extension: add video quality selection (360p, 720p, 1080p with HLS), comments on videos, playlists, or live streaming with WebRTC.
+- HLS is the industry standard for video streaming. The key insight: instead of serving one huge file, you serve a playlist of small segments (2-10 seconds each). The client fetches segments on demand, enabling seeking without downloading the entire video.
+- The shared Zod schema pattern eliminates validation drift. When you change a field (e.g., max title length), the change propagates to both frontend validation and backend validation from a single source of truth.
+- FFmpeg in production: use a Docker image that includes FFmpeg (e.g., `node:18` + `apt-get install ffmpeg`). Process transcoding asynchronously — don't block the upload response. Show "processing" status until transcoding completes.
+- Extension: add multiple quality levels (360p, 720p, 1080p), live streaming with WebRTC, video comments with timestamps, or content recommendation based on viewing history.
 
 ## README Guidance
 
-The project repo's README should include a description, screenshots of video library and
-player, tech stack, ffmpeg setup instructions, environment variables, and local setup steps.
+The project repo's README should include a description, screenshots of the video library
+and player, architecture diagram (upload → transcode → stream), tech stack, Docker setup,
+environment variables, and local development instructions.

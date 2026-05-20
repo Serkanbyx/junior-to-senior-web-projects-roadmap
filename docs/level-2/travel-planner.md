@@ -1,6 +1,6 @@
 # Travel Planner
 
-> A travel planning app with drag-and-drop itinerary management, Unsplash city images, and multi-format export.
+> A travel planning app with drag-and-drop itinerary (dnd-kit), Unsplash city images, date picker, and multi-format export.
 
 **Level:** 2 &nbsp;·&nbsp; **Status:** ✅ Built
 &nbsp;·&nbsp; [Live Demo](https://travel-plannerrr.netlify.app/plans) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/travel-planner)
@@ -9,43 +9,43 @@
 
 ## Purpose
 
-This project teaches you multi-step state management and drag-and-drop reordering in a React
-context. You'll manage nested data (trips → days → activities), handle complex user interactions
-(dragging items between lists), and integrate with an image API. The export feature introduces
-client-side file generation in multiple formats — a skill used in any app with "download" functionality.
+This project teaches drag-and-drop — one of the most complex UI interactions to implement
+correctly. Using dnd-kit (the modern React DnD library), you'll build reorderable itinerary
+items, date-based trip planning, and data export. It combines multiple advanced patterns:
+DnD, date handling, multi-step state, and external API integration.
 
 ## Tech Stack
 
-- **Frontend:** React 18, TypeScript, Tailwind CSS
-- **Backend:** none
-- **Database:** LocalStorage (via Zustand persist)
-- **Key libraries / tools:** Zustand, dnd-kit (drag-and-drop), Unsplash API (city images)
+- **Framework:** React 18, TypeScript, Vite
+- **Styling:** Tailwind CSS, class-variance-authority, clsx, tailwind-merge
+- **State:** Zustand
+- **Drag & Drop:** dnd-kit (core, sortable, modifiers, utilities)
+- **UI Components:** Radix UI (dialog, label, select, tabs)
+- **Date picker:** react-day-picker
+- **Dates:** date-fns
+- **Routing:** React Router
+- **Validation:** Zod
+- **Icons:** Lucide React
 - **Deployment:** Netlify
 
 ## Build Steps
 
-1. **Model the data.** Define nested types: `Trip { id, destination, startDate, endDate, coverImage, days: Day[] }`, `Day { id, date, activities: Activity[] }`, `Activity { id, title, time, notes, location }`. Store in Zustand with persist.
-2. **Build trip CRUD.** A form to create a trip (destination, dates). On creation, automatically generate `Day` objects for each date in the range. Show all trips as cards with cover images fetched from the Unsplash API based on the destination name.
-3. **Build the itinerary view.** Display a trip's days as columns (or tabs on mobile). Each day shows its activities in time order. An "add activity" button opens a form for title, time, notes, and location.
-4. **Implement drag-and-drop.** Use dnd-kit to make activities draggable within a day (reorder) and between days (reschedule). Handle the `onDragEnd` event to update the Zustand store: remove from source array, insert into target array at the drop index.
-5. **Integrate Unsplash.** On trip creation, fetch a city photo from the Unsplash API using the destination as a search query. Display it as the trip's cover image. Handle API failures with a placeholder gradient.
-6. **Add multi-format export.** Generate a downloadable itinerary in multiple formats: plain text (`.txt`), Markdown (`.md`), and JSON. Build the content string programmatically from the trip data and trigger download with `Blob` + `URL.createObjectURL`.
-7. **Polish the UX.** Add visual drag feedback (ghost element, drop indicators), smooth animations on reorder, empty states for days without activities, and a responsive layout that works on mobile (single column with day tabs).
+1. **Build the trip CRUD.** Create trips with: destination, start date, end date, cover image (from Unsplash API). List all trips. Delete trips. Store in Zustand with persistence.
 
-## Deployment
+2. **Integrate Unsplash for city images.** On trip creation, fetch a city photo from Unsplash API to use as the trip cover. Display beautiful destination imagery throughout the app.
 
-Deploy on Netlify. If using the Unsplash API, set the access key as a Netlify environment
-variable and proxy through a serverless function. For demo purposes, a limited number of
-requests can be made directly with the client key.
+3. **Build the itinerary with dnd-kit.** Each day of the trip has activities. Activities are drag-and-drop sortable within a day (reorder) and between days (move to different day). Use `@dnd-kit/sortable` with sensors and modifiers.
+
+4. **Add the date picker.** react-day-picker for selecting trip dates. Validate: end date must be after start date. Auto-generate day slots in the itinerary based on the date range. date-fns for all date math.
+
+5. **Build activity management.** Add activities to each day: name, time, location, notes. Edit and delete. The itinerary is a nested structure: trip → days → activities (reorderable).
+
+6. **Implement multi-format export.** Export the complete itinerary as JSON (machine-readable) or CSV (spreadsheet-friendly). Generate a downloadable file with trip details and all activities.
+
+7. **Style with Radix + CVA.** Radix Dialog for modals, Select for dropdowns, Tabs for view switching. CVA for consistent component variants throughout the app.
 
 ## Tips
 
-- dnd-kit is the modern React drag-and-drop library (replaces react-beautiful-dnd which is deprecated). Its `useSortable` hook handles most reorder cases with minimal code.
-- Nested state updates (moving an activity from Day A to Day B) are the trickiest part. Use Immer or spread carefully — a shallow copy at the wrong level will cause stale state bugs.
-- Extension: add a map view with pins for each activity's location, budget tracking per trip, or collaborative planning with shareable links.
-
-## README Guidance
-
-The project repo's README should include a short description, screenshots of the trip list
-and itinerary view with drag-and-drop, the live demo link, tech stack, features list, and
-local dev instructions.
+- dnd-kit is the successor to react-beautiful-dnd. It's modular: import only what you need (core for basic DnD, sortable for lists, modifiers for constraints). The `useSortable` hook makes any component draggable.
+- Nested sortable lists (activities within days) require `SortableContext` per day with unique IDs. Moving items between days uses the `onDragEnd` handler to detect which container the item was dropped into.
+- Extension: add map view with pins for each activity, budget tracking per trip, collaborative planning (share trip link), or integration with booking APIs.

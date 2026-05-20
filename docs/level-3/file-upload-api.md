@@ -1,51 +1,59 @@
 # File Upload API
 
-> A file upload service with Multer multipart handling, file type validation, size limits, and storage management.
+> A secure REST API for file uploads with type/size validation, dual storage (local disk + Cloudinary), and interactive Swagger documentation.
 
 **Level:** 3 &nbsp;·&nbsp; **Status:** ✅ Built
-&nbsp;·&nbsp; [Live Demo](https://file-upload-api-bnql.onrender.com/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/file-upload-api)
+&nbsp;·&nbsp; [Live Demo](https://file-upload-api-gyrf.onrender.com/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/file-upload-api)
 
 ---
 
 ## Purpose
 
-File uploads are one of the trickiest parts of web development — multipart form data,
-binary streams, validation, storage, and serving. This project teaches you to handle all of
-it: configure Multer for multipart parsing, validate file types and sizes, store files (local
-disk or cloud), generate unique filenames, and serve them back. Every app with user avatars,
-document uploads, or media needs this.
+File uploads are tricky — you need to handle multipart form data, validate file types
+(prevent executable uploads), enforce size limits (prevent disk exhaustion), and choose
+a storage strategy (local vs cloud). This project implements both local disk and Cloudinary
+storage, teaching you the patterns for any file upload scenario.
 
 ## Tech Stack
 
-- **Frontend:** none (API only)
-- **Backend:** Node.js, Express
-- **Database:** MongoDB (file metadata)
-- **Key libraries / tools:** Multer (multipart parsing), sharp (image processing, optional), uuid (filenames)
+- **Runtime:** Node.js
+- **Framework:** Express 5
+- **Database:** None (file metadata in response only)
+- **File handling:** Multer (multipart parsing + local storage)
+- **Cloud storage:** Cloudinary + multer-storage-cloudinary
+- **IDs:** uuid
+- **Security:** Helmet 8, express-rate-limit, CORS
+- **Documentation:** Swagger (swagger-jsdoc + swagger-ui-express)
 - **Deployment:** Render.com
 
 ## Build Steps
 
-1. **Configure Multer.** Set up Multer with disk storage: custom destination folder, unique filename generation (uuid + original extension). Set file size limit (e.g. 5MB) and create a file filter that accepts only allowed MIME types.
-2. **Build the upload endpoint.** `POST /upload` accepts `multipart/form-data` with a file field. On success, return file metadata: `{ id, originalName, filename, mimeType, size, url, uploadedAt }`. Support single and multiple file uploads.
-3. **Validate file types.** In the Multer file filter, check `file.mimetype` against an allowlist (images: jpeg/png/gif/webp, documents: pdf/doc). Reject disallowed types with a clear error message before writing to disk.
-4. **Store metadata in DB.** Save file info (original name, stored filename, size, MIME type, upload date) to MongoDB. This lets you list, search, and delete files via the API without scanning the filesystem.
-5. **Serve uploaded files.** `GET /files/:filename` serves the file from disk using `res.sendFile()` or Express static middleware. Set proper `Content-Type` headers. Support inline display (images) and download (documents) via `Content-Disposition`.
-6. **Add file management.** `GET /files` lists all uploaded files (with pagination). `DELETE /files/:id` removes the file from both disk and database. Handle the case where the DB record exists but the file doesn't (or vice versa).
-7. **Handle errors robustly.** Multer errors (file too large, wrong type) need custom error messages. Disk full errors, permission errors, and partial upload failures must all return meaningful responses.
+1. **Configure Multer for local storage.** Set up Multer with disk storage: define destination directory, generate unique filenames with uuid, and configure size limits (5MB default). Multer parses multipart/form-data and makes the file available as `req.file`.
+
+2. **Add file type validation.** Create a file filter function that checks MIME type. Allow only: images (jpeg, png, gif, webp) and documents (pdf, docx). Reject everything else with a clear error message. Never trust the file extension alone — check the MIME type.
+
+3. **Configure Cloudinary storage.** Set up multer-storage-cloudinary as an alternative storage engine. Same Multer interface, but files go directly to Cloudinary instead of local disk. Return the Cloudinary URL in the response.
+
+4. **Build upload endpoints.** `POST /upload/local` stores on disk, returns file path. `POST /upload/cloud` stores on Cloudinary, returns URL. Both validate type and size. Return metadata: filename, size, mimetype, url/path.
+
+5. **Add size limit enforcement.** Multer's `limits: { fileSize: 5 * 1024 * 1024 }` rejects oversized files. Handle the `LIMIT_FILE_SIZE` error with a user-friendly message. Different endpoints can have different limits.
+
+6. **Build a health check and docs.** `GET /health` for uptime monitoring. Swagger documents both upload endpoints with multipart/form-data request body, file field name, and response schema.
+
+7. **Deploy to Render.** Set `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` for cloud uploads. Local uploads use Render's disk (ephemeral — files lost on redeploy).
 
 ## Deployment
 
-Deploy on Render.com. Uploaded files are stored on Render's ephemeral disk (they may be lost
-on redeploy). For production, use cloud storage (S3, Cloudinary). Set `MONGODB_URI` and
-`MAX_FILE_SIZE` as environment variables.
+Deploy on Render.com. Cloudinary credentials as env vars. Local storage is ephemeral on
+Render — use Cloudinary for persistent file storage in production.
 
 ## Tips
 
-- Render's disk is ephemeral — files disappear on redeploy. For a persistent demo, use Cloudinary's free tier or AWS S3. For this learning project, ephemeral storage is fine.
-- Always generate unique filenames server-side (uuid). Never trust user-provided filenames — they can contain path traversal attacks (`../../etc/passwd`) or overwrite existing files.
-- Extension: add image resizing with Sharp, thumbnail generation, virus scanning with ClamAV, or presigned upload URLs for direct-to-S3 uploads.
+- Never trust file extensions. A user can rename `malware.exe` to `image.jpg`. Always validate the MIME type (Content-Type header from Multer) and optionally use magic bytes (file signature) for deeper validation.
+- Render's disk is ephemeral — files are lost on each deploy. This makes Cloudinary the correct production choice. Local disk is only useful for development or temporary processing.
+- Extension: add image resizing (sharp library), multiple file upload, presigned URLs for direct-to-cloud upload, or file metadata storage in a database.
 
 ## README Guidance
 
-The project repo's README should include a description, endpoint table with multipart examples
-(curl commands), file type/size limits, environment variables, and local setup steps.
+The project repo's README should include a description, upload endpoint docs with curl
+examples, supported file types, size limits, tech stack, and setup instructions.

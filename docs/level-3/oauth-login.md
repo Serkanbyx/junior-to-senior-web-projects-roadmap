@@ -1,50 +1,58 @@
 # OAuth Login
 
-> An OAuth 2.0 authentication backend with Google and GitHub providers, Passport.js integration, and session management.
+> An OAuth2 login backend with Google and GitHub authentication using Passport.js, session-based auth, and MongoDB.
 
 **Level:** 3 &nbsp;·&nbsp; **Status:** ✅ Built
-&nbsp;·&nbsp; [Live Demo](https://oauth-login-backend-fxh8.onrender.com/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/oauth-login-backend)
+&nbsp;·&nbsp; [Live Demo](https://oauth-login-backend.onrender.com/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/oauth-login-backend)
 
 ---
 
 ## Purpose
 
-OAuth is how "Login with Google/GitHub" works — and understanding it requires implementing
-it once from scratch. This project teaches the full OAuth 2.0 authorization code flow:
-redirect to provider, handle callback, exchange code for token, fetch user profile, and
-create/link a local user account. It's the most common auth pattern in modern web apps.
+OAuth is how "Login with Google/GitHub" works. Instead of managing passwords yourself, you
+delegate authentication to a trusted provider. This project teaches the OAuth 2.0 flow
+(redirect → consent → callback → token exchange), Passport.js strategy pattern, and session-based
+auth with MongoDB storage. It's a fundamentally different auth model than JWT.
 
 ## Tech Stack
 
-- **Frontend:** none (API + redirect flow)
-- **Backend:** Node.js, Express
-- **Database:** MongoDB (Mongoose)
-- **Key libraries / tools:** Passport.js, passport-google-oauth20, passport-github2, express-session
+- **Runtime:** Node.js
+- **Framework:** Express 5
+- **Database:** MongoDB (Mongoose 8)
+- **Auth:** Passport.js (passport-google-oauth20 + passport-github2)
+- **Sessions:** express-session + connect-mongo (MongoDB session store)
+- **Security:** Helmet 8
+- **Documentation:** Swagger (swagger-jsdoc + swagger-ui-express)
 - **Deployment:** Render.com
 
 ## Build Steps
 
-1. **Register OAuth apps.** Create OAuth applications on Google Cloud Console and GitHub Developer Settings. Get the Client ID and Client Secret for each. Set the callback URLs to your server's redirect endpoints.
-2. **Configure Passport strategies.** Install `passport-google-oauth20` and `passport-github2`. Configure each with client ID, secret, and callback URL. The verify callback receives the profile and finds/creates a user in your database.
-3. **Build the auth routes.** `GET /auth/google` → redirects to Google. `GET /auth/google/callback` → handles the redirect back with the authorization code. Same for GitHub. Use `passport.authenticate()` middleware.
-4. **Handle the callback.** Passport exchanges the code for an access token, fetches the user profile, and calls your verify callback. In the callback: find a user by OAuth provider ID, or create a new one with `{ provider, providerId, email, name, avatar }`.
-5. **Manage sessions.** Use `express-session` with a MongoDB session store (connect-mongo). After successful OAuth, Passport serializes the user ID into the session. On subsequent requests, deserialize to get the full user object.
-6. **Build user endpoints.** `GET /auth/me` returns the current authenticated user (from session). `GET /auth/logout` destroys the session. Protect routes with a middleware that checks `req.isAuthenticated()`.
-7. **Handle account linking.** If a user logs in with Google and later with GitHub using the same email, link both providers to one account rather than creating a duplicate. Check by email on callback.
+1. **Set up OAuth apps.** Register apps on Google Cloud Console and GitHub Developer Settings. Get Client ID and Client Secret for each. Configure callback URLs: `https://your-domain.com/auth/google/callback` and `/auth/github/callback`.
+
+2. **Configure Passport strategies.** Install passport-google-oauth20 and passport-github2. Each strategy takes: clientID, clientSecret, callbackURL, and a verify function. The verify function finds or creates the user in MongoDB from the provider's profile data.
+
+3. **Set up session-based auth.** Unlike JWT (stateless), OAuth uses sessions (stateful). Configure express-session with connect-mongo (stores sessions in MongoDB). Sessions persist across server restarts. Passport's `serializeUser`/`deserializeUser` hooks handle session ↔ user mapping.
+
+4. **Build the OAuth flow.** Route: `GET /auth/google` → Passport redirects to Google's consent screen → user approves → Google redirects to `/auth/google/callback` → Passport exchanges code for token → verify function runs → user is logged in. Same pattern for GitHub.
+
+5. **Build user management.** User model: `{ provider, providerId, email, name, avatar, createdAt }`. On first OAuth login, create the user. On subsequent logins, find the existing user by providerId. Handle the case where a user logs in with both Google and GitHub (same email → link accounts).
+
+6. **Build session endpoints.** `GET /auth/me` (return current user from session or 401), `POST /auth/logout` (destroy session). Protected routes check `req.isAuthenticated()` (Passport's session check).
+
+7. **Deploy to Render.** Set OAuth credentials (GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET), MongoDB URI, and SESSION_SECRET. Update callback URLs to production domain.
 
 ## Deployment
 
-Deploy on Render.com. Set environment variables: `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`,
-`GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `SESSION_SECRET`, `MONGODB_URI`, and `CLIENT_URL`
-(for redirecting after auth). Update OAuth app callback URLs to the Render deployment URL.
+Deploy on Render.com. MongoDB Atlas for database + session storage. Update OAuth app
+callback URLs to production domain. Set all credentials as environment variables.
 
 ## Tips
 
-- The OAuth flow has many redirects. Draw it out: Client → Your Server → Google → Your Server (callback) → Client. Understanding this flow visually prevents confusion.
-- Never store access tokens long-term unless you need to make API calls on behalf of the user. For simple login, you only need the profile info from the initial token exchange.
-- Extension: add refresh token handling (for long-lived API access), JWT-based sessions (stateless alternative to express-session), or additional providers (Discord, Twitter, Apple).
+- Sessions vs JWT: OAuth providers return a token, but you don't forward it to the client. Instead, you create a server-side session. The client just gets a session cookie — no token management needed. This is simpler for traditional web apps.
+- connect-mongo stores sessions in MongoDB. This means sessions survive server restarts (unlike in-memory session store). It also scales across multiple server instances (all read from the same MongoDB).
+- Extension: add more providers (Twitter, Discord, Apple), account linking (connect multiple providers to one account), or role-based access after OAuth login.
 
 ## README Guidance
 
-The project repo's README should include a description, OAuth flow diagram, setup steps for
-registering OAuth apps (with screenshots), environment variables, and local dev instructions.
+The project repo's README should include a description, OAuth flow diagram, provider setup
+instructions, session explanation, tech stack, and deployment guide.

@@ -1,6 +1,6 @@
-# MCQ/Quiz API
+# MCQ Quiz API
 
-> A quiz engine API with nested question data, scoring logic, timed sessions, and leaderboard tracking.
+> A RESTful MCQ Quiz API with Fisher-Yates randomization, category/difficulty filtering, timed sessions, and automatic score calculation.
 
 **Level:** 3 &nbsp;·&nbsp; **Status:** ✅ Built
 &nbsp;·&nbsp; [Live Demo](https://mcq-quiz-api.onrender.com/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/mcq-quiz-api)
@@ -9,42 +9,50 @@
 
 ## Purpose
 
-This project teaches you to model nested/hierarchical data (quizzes contain questions contain
-options) and implement stateful business logic (scoring, timing, answer validation). It's more
-complex than simple CRUD because the API must enforce rules: you can't see answers before
-submitting, you can't submit after time expires, and the score must be calculated server-side
-to prevent cheating.
+This project teaches you to build stateful API flows — a quiz isn't a single request, it's
+a session: start quiz → answer questions → submit → get score. You'll learn to manage
+temporary state (active quiz sessions), implement the Fisher-Yates shuffle algorithm for
+unbiased randomization, and calculate scores server-side (never trust the client).
 
 ## Tech Stack
 
-- **Frontend:** none (API only)
-- **Backend:** Node.js, Express
-- **Database:** MongoDB (Mongoose)
-- **Key libraries / tools:** Mongoose subdocuments, dotenv
+- **Runtime:** Node.js
+- **Framework:** Express 5
+- **Database:** SQLite (better-sqlite3)
+- **Session IDs:** uuid
+- **Validation:** express-validator
+- **Security:** Helmet 8, express-rate-limit
+- **Documentation:** Swagger (swagger-jsdoc + swagger-ui-express)
 - **Deployment:** Render.com
 
 ## Build Steps
 
-1. **Model the data.** Quiz: `{ title, description, questions: [Question], timeLimit, createdAt }`. Question: `{ text, options: [{ text, isCorrect }], points }`. Use Mongoose subdocuments — questions are embedded in the quiz document.
-2. **Build quiz CRUD.** Admin endpoints to create, update, and delete quizzes. When returning a quiz for play, strip `isCorrect` from options — the client should never see answers before submission.
-3. **Start a quiz session.** `POST /quizzes/:id/start` creates a session: `{ quizId, startedAt, expiresAt: startedAt + timeLimit }`. Return the questions (without answers) and a session token/ID.
-4. **Submit answers.** `POST /quizzes/:id/submit` accepts `{ sessionId, answers: [{ questionId, selectedOption }] }`. First check if the session has expired. Then compare each answer against the correct option and calculate the score.
-5. **Calculate scoring.** For each question: if the selected option's `isCorrect` is true, award the question's points. Return a breakdown: total score, max possible, percentage, and per-question results (correct/incorrect).
-6. **Build a leaderboard.** Store completed sessions with scores. `GET /quizzes/:id/leaderboard` returns top scores sorted descending, with username and completion time. Support pagination.
-7. **Enforce timing rules.** If `Date.now() > session.expiresAt`, reject the submission with a 400 and return the score as 0. The time check must happen server-side — never trust the client's clock.
+1. **Seed the question bank.** Create a questions table: `id, question, options (JSON), correct_answer, category, difficulty ('easy'|'medium'|'hard')`. Seed with 50+ questions across multiple categories. Store options as JSON array.
+
+2. **Build the quiz start endpoint.** `POST /quiz/start` accepts `{ category?, difficulty?, count: 10 }`. Select random questions using the Fisher-Yates shuffle algorithm (not `ORDER BY RANDOM()` which is biased and slow). Create a session with UUID, store selected question IDs and start time.
+
+3. **Implement Fisher-Yates shuffle.** Fetch matching questions from SQLite, then shuffle in memory with Fisher-Yates. Take the first N items. This produces an unbiased random selection — every question has an equal probability of being chosen.
+
+4. **Build the answer submission endpoint.** `POST /quiz/:sessionId/submit` accepts answers array. Compare each answer to the correct answer (server-side lookup — the correct answers were never sent to the client). Calculate score, time taken, and per-question results.
+
+5. **Add timed quizzes.** Store start time in the session. On submit, calculate elapsed time. Optionally enforce a time limit (e.g., 30 seconds per question). If time expires, auto-submit with unanswered questions marked wrong.
+
+6. **Build statistics and leaderboard.** Store completed quiz results: `session_id, score, total, category, difficulty, time_taken, completed_at`. `GET /quiz/leaderboard` returns top scores sorted by score then time.
+
+7. **Protect against cheating.** Never send correct answers to the client during the quiz — only send questions and options. Score calculation happens entirely server-side. Rate limit quiz starts to prevent brute-force answer discovery.
 
 ## Deployment
 
-Deploy on Render.com. Set `MONGODB_URI`. Seed with a few sample quizzes using a seed script
-so the demo API has content to interact with.
+Deploy on Render.com. Question bank persists in SQLite. Sessions can be stored in-memory
+(with TTL cleanup) or in SQLite.
 
 ## Tips
 
-- Never send correct answers to the client before submission. The API should return questions with options but `isCorrect` stripped. Only reveal correct answers in the submission response.
-- Server-side timing is critical for fairness. Store `expiresAt` on session creation and validate against it on submission — the client's reported time is irrelevant.
-- Extension: add categories/tags for quizzes, difficulty levels, randomized question order per session, or a question bank that samples N questions from a larger pool.
+- Fisher-Yates is the only correct shuffle algorithm. `array.sort(() => Math.random() - 0.5)` is biased — some permutations are more likely than others. Fisher-Yates guarantees uniform distribution in O(n) time.
+- Never send correct answers to the client. The quiz flow: server sends questions (without answers) → client submits answers → server compares and returns results. If you send correct answers upfront, anyone can cheat via browser DevTools.
+- Extension: add multiplayer quiz mode, question contribution (users submit questions), difficulty progression (start easy, get harder), or a time-attack mode.
 
 ## README Guidance
 
-The project repo's README should include a description, API flow diagram (create quiz → start
-session → submit answers → view score), endpoint table, and local setup steps.
+The project repo's README should include a description, quiz flow explanation, API endpoints,
+Fisher-Yates algorithm note, tech stack, and setup instructions.

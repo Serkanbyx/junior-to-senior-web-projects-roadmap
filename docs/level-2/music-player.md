@@ -1,6 +1,6 @@
 # Music Player
 
-> A music player with playlist management, shuffle/repeat modes, progress bar, and HTML5 Audio API integration.
+> A modern music player with HTML5 Audio API, playlist management, shuffle/repeat modes, and Zustand state.
 
 **Level:** 2 &nbsp;·&nbsp; **Status:** ✅ Built
 &nbsp;·&nbsp; [Live Demo](https://music-playerrrrr.netlify.app/player) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/music-player)
@@ -9,42 +9,39 @@
 
 ## Purpose
 
-This project teaches you to work with the HTML5 Audio API — controlling playback, tracking
-progress, and responding to media events. You'll build a stateful queue system (playlist with
-current track, next/previous, shuffle, repeat) which is the same pattern used in media apps,
-task queues, and carousel components. Zod validation introduces runtime type checking for data.
+This project teaches you to work with the HTML5 Audio API — controlling media playback
+programmatically. You'll manage complex player state (current track, position, duration,
+playing/paused, shuffle, repeat) and synchronize UI with audio events. It's the same
+architecture used by Spotify's web player.
 
 ## Tech Stack
 
-- **Frontend:** React, TypeScript, Tailwind CSS
-- **Backend:** none
-- **Database:** none (playlist state in Zustand)
-- **Key libraries / tools:** Zustand, Zod (data validation), HTML5 Audio API
+- **Framework:** React, TypeScript, Vite
+- **Styling:** Tailwind CSS
+- **State:** Zustand (player state: current track, playlist, shuffle, repeat)
+- **Routing:** React Router
+- **Validation:** Zod
+- **Icons:** Lucide React
 - **Deployment:** Netlify
 
 ## Build Steps
 
-1. **Model the track data.** Define a track interface: `{ id, title, artist, album, duration, src, coverArt }`. Use Zod to validate track objects at runtime — this catches malformed data before it crashes the player.
-2. **Set up the Audio element.** Create a React ref to an `<audio>` element. Build a custom hook (`useAudioPlayer`) that exposes: play, pause, seek, volume, currentTime, duration, and loading state. Listen to `timeupdate`, `ended`, `loadedmetadata` events.
-3. **Build playback controls.** Play/pause toggle, next/previous track, volume slider, and a seek/progress bar. The progress bar shows elapsed time, total duration, and a draggable handle for seeking. Update the bar on every `timeupdate` event.
-4. **Implement the playlist.** A scrollable list of tracks with the current track highlighted. Clicking a track starts playback immediately. Show track title, artist, duration, and album art thumbnail.
-5. **Add shuffle and repeat.** Shuffle mode randomizes the next-track order without repeating until all tracks have played (Fisher-Yates on a queue copy). Repeat modes: off, repeat-all (loop playlist), repeat-one (loop current track). Persist mode preference.
-6. **Build the "now playing" view.** A large album art display, animated progress ring or bar, track info, and controls. This is the main visual focus of the app — make it polished with smooth transitions between tracks.
-7. **Handle edge cases.** Audio loading errors (show fallback message), empty playlist state, and browser autoplay restrictions (require user interaction before first play). Add keyboard shortcuts (space = play/pause, arrows = seek).
+1. **Set up the Audio API abstraction.** Create a custom hook or utility that wraps the HTML5 `Audio` object. Expose: play, pause, seek, setVolume, getCurrentTime, getDuration. Listen to audio events: `timeupdate`, `ended`, `loadedmetadata`.
 
-## Deployment
+2. **Build the player state in Zustand.** Track: `{ id, title, artist, album, duration, src }`. Player state: `{ currentTrack, playlist, isPlaying, currentTime, volume, shuffle, repeat }`. Actions: play, pause, next, previous, seek, toggleShuffle, toggleRepeat.
 
-Deploy on Netlify. Include a few royalty-free audio files in the repo for demo purposes,
-or link to external audio URLs. No environment variables needed.
+3. **Build the player UI.** Album art, track info (title, artist), progress bar (seekable), time display (current/total), play/pause button, next/previous, volume slider. All synced to Audio API state.
+
+4. **Implement the progress bar.** Update current time from `timeupdate` events (fires ~4x/second). Render as a seekable bar. On click/drag, seek to that position. Show elapsed and remaining time.
+
+5. **Build playlist management.** Display track list with current track highlighted. Click to play any track. Add/remove from playlist. Drag to reorder (optional).
+
+6. **Implement shuffle and repeat.** Shuffle: on "next," pick a random unplayed track instead of sequential. Repeat modes: none (stop at end), repeat-all (loop playlist), repeat-one (loop current track).
+
+7. **Add routing and deploy.** React Router for player page vs library/playlist views. Deploy on Netlify with `_redirects` for SPA routing.
 
 ## Tips
 
-- The HTML5 Audio API fires events asynchronously. Always use event listeners (`timeupdate`, `ended`) rather than polling `currentTime` — it's more efficient and avoids race conditions.
-- Browser autoplay policies block audio playback without user interaction. Always require a click before calling `.play()` for the first time.
-- Extension: add an equalizer visualization using the Web Audio API's `AnalyserNode`, or implement queue management (add to queue, reorder, remove).
-
-## README Guidance
-
-The project repo's README should include a short description, a screenshot of the player UI
-with album art, the live demo link, tech stack, features list (shuffle, repeat, progress bar),
-and local dev instructions.
+- The Audio API's `timeupdate` event fires approximately 4 times per second. Don't update React state on every fire — use a ref for current time and only setState for visual updates (throttled to ~15fps for smooth progress bar).
+- Shuffle implementation: maintain a "shuffle queue" (randomized copy of playlist). Advance through the queue sequentially — this ensures every track plays once before repeating, unlike true random which can repeat.
+- Extension: add equalizer visualization (Web Audio API + AnalyserNode), lyrics display, crossfade between tracks, or keyboard shortcuts.

@@ -1,6 +1,6 @@
 # Social Media Platform
 
-> A fullstack social platform with follow graph, personalized feed, notifications, and user profiles.
+> A fullstack social platform with real-time notifications, follow system, post interactions, dark mode, and Socket.io-powered live updates.
 
 **Level:** 4 &nbsp;·&nbsp; **Status:** ✅ Built
 &nbsp;·&nbsp; [Live Demo](https://social-media-platformm.netlify.app/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/social-media-platform)
@@ -9,41 +9,51 @@
 
 ## Purpose
 
-This is one of the most complex Level 4 projects — it combines posts, likes, comments,
-follows, a personalized feed, and notifications into a cohesive platform. It teaches you to
-model social graphs (who follows whom), generate feeds from followed users' content, and
-handle the notification lifecycle. This is the architecture behind Twitter, Instagram, and LinkedIn.
+This project combines posts, likes, comments, follows, and real-time notifications into a
+cohesive social platform. It teaches you to model social graphs (who follows whom), build
+personalized feeds, handle real-time interactions at scale, and create polished dark-mode
+interfaces. This is the architecture behind Twitter, Instagram, and LinkedIn.
 
 ## Tech Stack
 
-- **Frontend:** React, TypeScript, Tailwind CSS
-- **Backend:** Node.js, Express, MongoDB (Mongoose)
-- **Auth:** JWT
-- **Key libraries / tools:** Mongoose populate, Axios, React Router, Socket.io (notifications)
-- **Deployment:** Netlify (frontend) + Render (backend)
+- **Frontend:** React 19, Vite 6, Tailwind CSS 4, React Router 7, Inter font
+- **Backend:** Node.js, Express 5, MongoDB (Mongoose 8), Socket.io 4
+- **Auth:** JWT (httpOnly cookies) + bcryptjs
+- **Image uploads:** Cloudinary + Multer + Streamifier
+- **Security:** Helmet 8, express-rate-limit, express-mongo-sanitize
+- **API docs:** Swagger (swagger-jsdoc + swagger-ui-express)
+- **UX:** Lucide React (icons), React Hot Toast, socket.io-client, dark mode
+- **Architecture:** Service layer pattern (controllers → services → models)
+- **Deployment:** Netlify (frontend) + Render (backend, with `render.yaml`)
 
 ## Build Steps
 
-1. **Model the social graph.** User has `followers: [userId]` and `following: [userId]`. `POST /users/:id/follow` toggles the follow relationship (update both users atomically). Track follower/following counts.
-2. **Build the post system.** Posts with text, optional image, author reference. Like/unlike (same as Blog MERN). Comment system. All posts are public but the feed is personalized.
-3. **Generate the personalized feed.** `GET /feed` returns posts from users the current user follows, sorted by newest. Query: `Post.find({ author: { $in: req.user.following } }).sort('-createdAt')`. Paginate with cursor-based pagination.
-4. **Build user profiles.** Public profile page showing user info, post count, follower/following counts, and their posts. Follow/unfollow button. Show mutual followers if applicable.
-5. **Implement notifications.** Notification model: `{ recipient, sender, type: 'like' | 'comment' | 'follow', post?, read, createdAt }`. Create notifications on user actions. Mark as read when viewed.
-6. **Build the notification UI.** A bell icon with unread count. Dropdown showing recent notifications with sender avatar, action text, and timestamp. Mark all as read on open. Link to the relevant content.
-7. **Add explore/discover.** A page showing trending posts (most liked in 24h), suggested users to follow (not yet followed, most popular), and a search for users by name.
+1. **Design the social graph.** User model with `followers` and `following` references. Follow/unfollow endpoint toggles the relationship (update both users). Track counts for display on profiles. The service layer separates business logic from route handlers.
+
+2. **Build the post system.** Create posts with text and optional image (Cloudinary). Like/unlike toggle. Comment with text. All interactions stored in MongoDB with user references. Public feed shows all posts; personalized feed shows followed users' posts only.
+
+3. **Implement real-time notifications.** Socket.io connection authenticated via JWT. Notification model: `{ recipient, sender, type: 'like' | 'comment' | 'follow', post?, read }`. When someone likes your post, an instant Socket.io event reaches your client. Notification bell with unread count.
+
+4. **Build user profiles.** Profile page with avatar (Cloudinary upload), bio, follower/following counts, and user's posts. Follow/unfollow button. Edit own profile. View other users' profiles from the feed.
+
+5. **Build the feed.** Two views: "For You" (all posts, sorted by newest) and "Following" (only from users you follow). Infinite scroll or pagination. Each post card shows: author avatar + name, content, image, like/comment counts, and interaction buttons.
+
+6. **Implement dark mode.** System-wide dark theme as the default (with light mode option). Persistent preference stored in state. Tailwind CSS dark mode utilities throughout. Consistent color palette using CSS custom properties.
+
+7. **Add seed data and deploy.** Seed script populates the database with sample users, posts, and follows for a meaningful demo. Service layer architecture keeps code maintainable: `controllers/` handle HTTP, `services/` contain business logic, `models/` define schemas.
 
 ## Deployment
 
-Backend on Render, frontend on Netlify. Standard MERN env vars. Seed with sample users
-and posts for a meaningful demo.
+Backend on Render (with `render.yaml`) — `MONGODB_URI`, `JWT_SECRET`, `CLOUDINARY_*`,
+`CLIENT_URL`. Frontend on Netlify (`netlify.toml`) with `VITE_API_URL`.
 
 ## Tips
 
-- Feed generation with `$in` on followed users works for thousands of users. For millions (Twitter scale), you'd use a fan-out-on-write pattern — but that's Level 5 territory. Keep it simple here.
-- Notifications should be created asynchronously (don't slow down the like/comment response). Use a simple in-process queue or fire-and-forget the notification creation.
-- Extension: add stories (24h expiring content), direct messages, hashtags/trending topics, or content moderation (report/block).
+- The service layer pattern: controllers parse requests and send responses; services contain all business logic. This makes testing easier (test services without HTTP) and prevents fat controllers that mix concerns.
+- Real-time notifications should be fire-and-forget from the action's perspective. When a user likes a post, the like response returns immediately — notification creation happens asynchronously. Never slow down the primary action for a secondary effect.
+- Extension: add stories (24h expiring content), direct messages, hashtags with trending topics, content moderation (report/block), or an explore page with algorithmic recommendations.
 
 ## README Guidance
 
-The project repo's README should include a description, screenshots of feed and profile,
-tech stack, features list, environment variables, and setup instructions.
+The project repo's README should include a description, screenshots of feed and profile
+(dark mode), features list, architecture overview, tech stack, and setup instructions.

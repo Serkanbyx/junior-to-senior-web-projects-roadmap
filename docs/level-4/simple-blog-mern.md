@@ -1,6 +1,6 @@
 # Simple Blog MERN
 
-> A fullstack blog with post creation, routing, and server-rendered content from MongoDB.
+> A fullstack blog with Markdown-powered content, role-based admin dashboard, Cloudinary image uploads, and category/tag filtering.
 
 **Level:** 4 &nbsp;·&nbsp; **Status:** ✅ Built
 &nbsp;·&nbsp; [Live Demo](https://simple-blog-mernn.netlify.app/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/simple-blog-mern)
@@ -9,41 +9,50 @@
 
 ## Purpose
 
-A blog is the classic fullstack project because it introduces public vs. private content,
-rich text handling, and URL-based routing to specific resources. Unlike notes (private to one
-user), blog posts are public — anyone can read them, but only the author can edit/delete.
-This duality teaches you to design APIs with mixed access levels.
+A blog introduces public vs. private content and rich rendering. Unlike notes (private),
+blog posts are public — anyone can read. The admin writes in Markdown, and the frontend
+renders it beautifully with syntax-highlighted code blocks. This teaches you role-based
+access, Markdown processing pipelines, SEO-friendly slugs, and image upload workflows.
 
 ## Tech Stack
 
-- **Frontend:** React, TypeScript, Tailwind CSS
-- **Backend:** Node.js, Express, MongoDB (Mongoose)
-- **Auth:** JWT (author-only write operations)
-- **Key libraries / tools:** React Router, Axios, React Quill or similar rich text editor
+- **Frontend:** React 19, Vite 8, Tailwind CSS 4, React Router 7
+- **Backend:** Node.js 18+, Express 5, MongoDB (Mongoose 9)
+- **Auth:** JWT (7-day expiry) + bcryptjs (12 rounds)
+- **Markdown:** react-markdown 10, remark-gfm 4 (GFM support), react-syntax-highlighter 16
+- **Image uploads:** Multer 2 + Cloudinary 2 (JPEG/PNG/WebP, 5MB limit)
+- **Security:** Helmet 8, rate limiting (100/15min general, 20/15min auth), CORS whitelist
+- **UX:** Axios, lazy loading (React.lazy + Suspense), debounced search, load-more pagination
 - **Deployment:** Netlify (frontend) + Render (backend)
 
 ## Build Steps
 
-1. **Design the data model.** Post schema: `{ title, slug, content (HTML), excerpt, author, coverImage, tags, published, createdAt, updatedAt }`. Generate slug from title for SEO-friendly URLs.
-2. **Build public API routes.** `GET /posts` (list published posts, with pagination), `GET /posts/:slug` (single post by slug). These are unauthenticated — anyone can read.
-3. **Build protected API routes.** `POST /posts`, `PATCH /posts/:id`, `DELETE /posts/:id` — all require auth. Verify the requesting user is the post author before allowing edit/delete.
-4. **Create the public blog UI.** A homepage listing posts (title, excerpt, date, cover image) with pagination. A post detail page rendered from the slug route. Clean typography for reading.
-5. **Build the author dashboard.** A protected area where the logged-in user can create, edit, and delete their posts. A rich text editor for content (React Quill or TipTap). Draft/published toggle.
-6. **Implement slug-based routing.** Use React Router: `/posts/:slug` maps to the detail page. The frontend fetches the post by slug from the API. Handle 404 (post not found) gracefully.
-7. **Add SEO basics.** Set page title and meta description dynamically based on the current post (using `document.title` or React Helmet). Generate an excerpt automatically from the first 160 characters of content.
+1. **Design the post model.** Schema: `{ title, slug, content (Markdown), excerpt, coverImage, category, tags: [String], author, published, createdAt, updatedAt }`. Auto-generate the slug from the title on save. Add indexes for slug (unique) and tags.
+
+2. **Build public API routes.** `GET /posts` (list published posts, paginated with load-more), `GET /posts/:slug` (single post by slug). These are unauthenticated. Support query params for category, tag, and search (debounced on the frontend).
+
+3. **Build the admin API.** `POST /posts`, `PATCH /posts/:id`, `DELETE /posts/:id` — all require auth. Role-based: admin role is auto-assigned via `ADMIN_EMAIL` env var. Multer + Cloudinary pipeline for cover image uploads.
+
+4. **Build the public blog UI.** A post list page with cover images, titles, excerpts, categories, and tags. A post detail page that renders Markdown content with `react-markdown`, GFM tables/task lists via `remark-gfm`, and syntax-highlighted code blocks via `react-syntax-highlighter`. Debounced search with instant results.
+
+5. **Build the admin dashboard.** A protected area for creating and editing posts. Write content in raw Markdown (not a WYSIWYG editor). Cover image upload with preview. Category selector and tag input. Published/draft toggle. Post management table with edit and delete.
+
+6. **Implement the category & tag system.** Predefined categories (dropdown select). Free-form tags (comma-separated input). Frontend filtering: click a category or tag to filter the post list. Backend query params support both.
+
+7. **Add performance and SEO.** React.lazy + Suspense for route-level code splitting. Auto-generated excerpts from the first 160 characters of Markdown content (stripped). SEO-friendly slug URLs. Load-more pagination (not offset-based) for the feed. Health check endpoint for monitoring.
 
 ## Deployment
 
-Frontend on Netlify, backend on Render. Set `MONGODB_URI`, `JWT_SECRET` on Render.
-Set `VITE_API_URL` on Netlify. Add a Netlify `_redirects` file for client-side routing.
+Backend on Render with `MONGODB_URI`, `JWT_SECRET`, `CLOUDINARY_*`, `ADMIN_EMAIL`.
+Frontend on Netlify with `VITE_API_URL`. Add a Netlify `_redirects` for SPA routing.
 
 ## Tips
 
-- Slugs should be unique and URL-safe. Generate with: `title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')`. Check for duplicates and append a number if needed.
-- Rich text editors output HTML. Store it as-is in MongoDB and render with `dangerouslySetInnerHTML` — but sanitize it server-side (with DOMPurify or sanitize-html) to prevent XSS.
-- Extension: add comments on posts, a category/tag system with filtered views, or an RSS feed endpoint.
+- Markdown content is stored as plain text in the database. Rendering happens entirely on the frontend with `react-markdown`. This means the backend is simple (just store/retrieve strings) while the frontend handles all presentation.
+- The `ADMIN_EMAIL` pattern for role assignment is elegant for single-author blogs: whoever registers with that email automatically becomes admin. No seed scripts needed.
+- Extension: add comments, reading time estimation, related posts algorithm, or an RSS feed endpoint.
 
 ## README Guidance
 
-The project repo's README should include a description, screenshots of blog list and post
-detail, tech stack, environment variables, and setup instructions for both client and server.
+The project repo's README should include a description, screenshots of blog feed and
+Markdown-rendered post, tech stack, environment variables, and setup instructions.

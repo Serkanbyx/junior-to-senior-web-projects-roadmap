@@ -1,6 +1,6 @@
 # Weather App (API)
 
-> An advanced weather PWA with city search, 5-day forecast, favorites, and offline support — powered by a real weather API.
+> An advanced weather PWA with city search, 5-day forecast, favorites, charts, and offline support via Service Worker.
 
 **Level:** 2 &nbsp;·&nbsp; **Status:** ✅ Built
 &nbsp;·&nbsp; [Live Demo](https://weather-app-advancedd.netlify.app/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/weather-app-advanced)
@@ -9,43 +9,41 @@
 
 ## Purpose
 
-This is your first project that talks to a real, authenticated API. It teaches you to manage
-API keys securely (via serverless functions), handle async data fetching with loading/error
-states, and cache responses for offline use. The jump from Level 1's mock-data weather app
-to this one mirrors the jump from tutorial projects to production code.
+This is the Level 1 weather app rebuilt properly. Instead of basic fetch calls, you now
+handle real API integration with key protection (Netlify Functions), state management with
+persistence (Zustand), data visualization (Recharts), and offline capability (PWA). It
+teaches the patterns that separate toy projects from production apps.
 
 ## Tech Stack
 
-- **Frontend:** React, TypeScript, Tailwind CSS
-- **Backend:** Netlify Functions (serverless proxy for API key)
-- **Database:** none (favorites stored client-side via Zustand persist)
-- **Key libraries / tools:** Zustand (state management), OpenWeatherMap API, Service Worker (PWA)
+- **Framework:** React 18, TypeScript, Vite
+- **Styling:** Tailwind CSS, tailwind-merge, clsx
+- **State:** Zustand with persistence (favorites survive page reload)
+- **Charts:** Recharts (temperature trends)
+- **Forms:** React Hook Form + Zod validation
+- **API proxy:** Netlify Functions (hides OpenWeatherMap API key)
+- **PWA:** vite-plugin-pwa + Workbox (offline support)
+- **UX:** Sonner (toast notifications), Lucide React (icons), React Router
 - **Deployment:** Netlify (static + serverless functions)
 
 ## Build Steps
 
-1. **Scaffold with Vite.** Create a React + TypeScript project. Configure Tailwind CSS for utility-first styling. Set up the folder structure: `components/`, `hooks/`, `store/`, `functions/`.
-2. **Build the serverless proxy.** Create a Netlify Function that receives a city name, calls the OpenWeatherMap API with the secret key stored in an environment variable, and returns the JSON. This keeps the API key off the client entirely.
-3. **Implement city search.** Build a search input with debouncing (300ms delay) so you don't fire a request on every keystroke. On submit, call your serverless function and display loading/error/success states explicitly.
-4. **Render current weather and forecast.** Parse the API response into a current-weather card (temp, condition, icon, humidity, wind) and a 5-day forecast row. Use TypeScript interfaces to type the API response — this catches shape errors at compile time.
-5. **Add favorites with Zustand.** Create a global store with `zustand/persist` middleware. Users can star a city to save it. On app load, fetch weather for all favorites in parallel with `Promise.all`.
-6. **Make it a PWA.** Register a service worker that caches static assets and API responses. Add a `manifest.json` for installability. Handle the offline state gracefully — show cached data with a "last updated" timestamp.
-7. **Polish the UI.** Add weather-appropriate background gradients (blue for clear, gray for cloudy), smooth transitions between states, and responsive breakpoints for mobile/tablet/desktop.
+1. **Set up Netlify Functions as API proxy.** Create a serverless function in `netlify/functions/` that calls OpenWeatherMap with the server-side API key. The frontend calls your function — never the external API directly. This keeps your key secret.
 
-## Deployment
+2. **Build the search with React Hook Form + Zod.** City search input validated with Zod (non-empty, reasonable length). On submit, call the Netlify Function. Handle loading, error, and empty states explicitly.
 
-Deploy on Netlify. Set the `OPENWEATHER_API_KEY` environment variable in the Netlify dashboard.
-The serverless function automatically deploys from the `netlify/functions/` directory. PWA
-features activate once served over HTTPS.
+3. **Implement Zustand for state.** Store current weather, forecast, and favorites in Zustand. Use the `persist` middleware to save favorites to localStorage — they survive page reload and even offline.
+
+4. **Build the 5-day forecast with Recharts.** Fetch forecast data and render a temperature line chart with Recharts. Show daily high/low, humidity, and weather icons. The chart makes trends visible at a glance.
+
+5. **Add favorites system.** Save cities to Zustand (persisted). Show weather cards for all favorites on the dashboard. One-click add/remove. Limit to prevent abuse.
+
+6. **Make it a PWA.** Configure vite-plugin-pwa with Workbox for offline caching. Add a manifest.json, service worker, and install prompt. The app works without internet using cached data.
+
+7. **Deploy on Netlify.** `netlify.toml` configures both the static site and the serverless function. Set `OPENWEATHER_API_KEY` in Netlify environment variables.
 
 ## Tips
 
-- Never expose API keys in client-side code — even if the API is "free." Serverless functions are the simplest solution and Netlify provides them at no cost for low traffic.
-- Zustand with `persist` middleware is lighter than Redux for small apps and gives you localStorage persistence in one line.
-- Extension: add geolocation-based weather (ask for the user's location), hourly forecast charts, or weather alerts.
-
-## README Guidance
-
-The project repo's README should include a short description, a screenshot showing current
-weather + forecast, the live demo link, tech stack, environment variable setup instructions,
-and steps to run locally with `npm run dev`.
+- Netlify Functions are the simplest way to hide API keys in a frontend-only project. No separate backend needed — just a `netlify/functions/weather.ts` file that proxies the request.
+- Zustand's persist middleware: `create(persist((set) => ({...}), { name: 'weather-storage' }))` — one line to make any store persist to localStorage.
+- Extension: add geolocation auto-detect, weather alerts, hourly forecast, or theme based on weather condition.

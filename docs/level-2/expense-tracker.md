@@ -1,6 +1,6 @@
 # Expense Tracker
 
-> A personal expense tracker with interactive charts, category management, CSV export, and dark mode.
+> A modern expense tracker with Recharts visualization, category management, CSV export, dark mode, and localStorage persistence.
 
 **Level:** 2 &nbsp;·&nbsp; **Status:** ✅ Built
 &nbsp;·&nbsp; [Live Demo](https://expense-trackerrrrrrrr.netlify.app/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/expense-tracker)
@@ -9,42 +9,40 @@
 
 ## Purpose
 
-This project is about data entry, aggregation, and visualization. You'll learn to model
-financial data with categories, compute running totals and breakdowns, render charts from
-dynamic data, and export structured data to CSV. It's the classic CRUD app elevated with
-data visualization — a pattern used in every analytics-facing product.
+This project combines data entry, state management, and visualization. You'll build a
+complete personal finance tool: add income/expenses, categorize them, view breakdowns in
+charts, and export data. It teaches Zustand persistence, Recharts for data viz, and building
+forms with proper validation — all patterns you'll reuse in every data-heavy frontend.
 
 ## Tech Stack
 
-- **Frontend:** React, TypeScript, Tailwind CSS
-- **Backend:** none
-- **Database:** LocalStorage (via Zustand persist)
-- **Key libraries / tools:** Zustand, Recharts (or similar), CSV export logic
+- **Framework:** React, TypeScript, Vite
+- **Styling:** Tailwind CSS
+- **State:** Zustand with localStorage persistence
+- **Charts:** Recharts (pie charts, bar charts)
+- **Forms:** React Hook Form + Zod validation
+- **Dates:** date-fns
+- **Icons:** Lucide React
 - **Deployment:** Netlify
 
 ## Build Steps
 
-1. **Model an expense.** Define the shape: `{ id, amount, category, description, date, type: 'income' | 'expense' }`. Create a Zustand store with CRUD actions (add, edit, delete) and persist middleware for LocalStorage.
-2. **Build the entry form.** Amount input (number), category selector (predefined + custom categories), date picker, description text field, and income/expense toggle. Validate that amount is positive and category is selected.
-3. **Render the transaction list.** Show all expenses sorted by date (newest first). Each row displays date, category icon, description, and formatted amount (green for income, red for expense). Add inline delete and edit actions.
-4. **Compute aggregations.** Calculate total income, total expenses, and balance. Break down expenses by category (food, transport, entertainment, etc.). Compute monthly totals for trend analysis. Use `useMemo` to avoid recalculating on every render.
-5. **Build interactive charts.** A pie/donut chart for category breakdown and a bar/line chart for monthly spending trends. Charts should update reactively when data changes. Add tooltips and legends for clarity.
-6. **Implement filtering and date ranges.** Filter by category, date range (this week, this month, custom), and type (income/expense). The charts and totals should reflect the active filters.
-7. **Add CSV export and dark mode.** Generate a CSV string from the filtered data and trigger a download with `Blob` + `URL.createObjectURL`. Implement dark mode with Tailwind's `dark:` variant and a toggle that persists preference.
+1. **Design the Zustand store.** Transactions array with: id, amount, type (income/expense), category, description, date. Persisted to localStorage. Actions: add, edit, delete, filter.
 
-## Deployment
+2. **Build the transaction form.** React Hook Form with Zod: validate amount (positive number), category (from predefined list), date (valid date via date-fns). Toggle between income and expense.
 
-Deploy on Netlify as a static React app. No backend or environment variables needed.
-All data lives in the browser's LocalStorage.
+3. **Build the dashboard summary.** KPI cards: total income, total expenses, net balance. Calculate from the transactions array. Update reactively when transactions change.
+
+4. **Add Recharts visualizations.** Pie chart for category breakdown (what percentage goes to food, transport, etc.). Bar chart for monthly income vs expenses. Transform transaction data into Recharts-compatible arrays.
+
+5. **Implement filtering.** Filter by month, category, or type. Filters apply to both the transaction list and charts simultaneously. Date-fns handles month calculations.
+
+6. **Add CSV export.** Convert filtered transactions to CSV format. Trigger browser download. Useful for importing into Excel or other finance tools.
+
+7. **Add dark mode and deploy.** Tailwind dark mode class strategy. Toggle persisted in Zustand. Deploy as static site on Netlify.
 
 ## Tips
 
-- Financial calculations should use integers (cents) internally to avoid floating-point errors. Display with `(amount / 100).toFixed(2)` and format with `Intl.NumberFormat`.
-- CSV export is simpler than it looks: join headers, then map each row to comma-separated values. Wrap fields containing commas in quotes.
-- Extension: add budget limits per category with visual warnings, recurring transactions, or multi-currency support.
-
-## README Guidance
-
-The project repo's README should include a short description, screenshots of the dashboard
-with charts and transaction list, the live demo link, tech stack, features list, and local
-dev instructions.
+- Zustand persist + localStorage is the simplest "database" for frontend-only apps. All transactions survive page refresh with zero backend. Perfect for personal tools.
+- Recharts data format: `[{ name: 'Food', value: 450 }, { name: 'Transport', value: 200 }]` for pie charts. Create a utility function that transforms raw transactions into this shape.
+- Extension: add budget goals per category, recurring transactions, multi-currency support, or bank statement import (parse CSV).

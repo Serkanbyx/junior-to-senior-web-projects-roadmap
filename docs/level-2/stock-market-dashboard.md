@@ -1,6 +1,6 @@
 # Stock Market Dashboard
 
-> A real-time stock market dashboard with live quotes, interactive charts, and watchlist management.
+> A responsive stock market dashboard with real-time quotes, interactive Recharts, Redux Toolkit state, and Finnhub API integration.
 
 **Level:** 2 &nbsp;·&nbsp; **Status:** ✅ Built
 &nbsp;·&nbsp; [Live Demo](https://stock-market-dashboarddd.netlify.app/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/stock-market-dashboard)
@@ -9,41 +9,41 @@
 
 ## Purpose
 
-This project introduces real-time data, charting libraries, and Redux-style state management.
-You'll learn to poll an API at intervals, format financial numbers correctly, and render
-time-series data as interactive charts. The watchlist feature teaches normalized state (managing
-a list of entities with their own update cycles) — the same pattern used in every dashboard app.
+This project introduces Redux Toolkit — the industry standard for complex state that
+multiple components need to share. A stock dashboard has interconnected state: watchlist
+affects which charts render, search updates the active symbol, and real-time data flows
+through the entire app. Redux makes this manageable with slices, selectors, and async thunks.
 
 ## Tech Stack
 
-- **Frontend:** React 18, TypeScript, Tailwind CSS
-- **Backend:** none (direct API calls or serverless proxy)
-- **Database:** none (watchlist in Redux persist)
-- **Key libraries / tools:** Redux Toolkit, Finnhub API, Recharts or similar charting library
+- **Framework:** React 18, TypeScript, Vite
+- **Styling:** Tailwind CSS
+- **State:** Redux Toolkit (createSlice, createAsyncThunk)
+- **Charts:** Recharts (line charts, area charts)
+- **Forms:** React Hook Form + Zod
+- **HTTP:** Axios
+- **API:** Finnhub (stock quotes, company info)
+- **Icons:** Lucide React
 - **Deployment:** Netlify
 
 ## Build Steps
 
-1. **Set up Redux Toolkit.** Configure a store with slices for `stocks` (current quotes) and `watchlist` (user's tracked symbols). Use `createAsyncThunk` for API calls and `persist` middleware for the watchlist.
-2. **Build the search/symbol lookup.** An input that searches stock symbols via the Finnhub symbol search endpoint. Display results as a dropdown with symbol, company name, and exchange. On select, add to the active view.
-3. **Fetch and display quotes.** For each watchlist symbol, fetch the current quote (price, change, percent change, high, low). Format numbers with `Intl.NumberFormat` — always show 2 decimal places for prices and color-code positive (green) vs. negative (red) changes.
-4. **Implement polling.** Set up a `setInterval` (every 15–60 seconds) that refreshes all watchlist quotes. Use a Redux thunk that dispatches updates. Clear the interval on unmount to prevent memory leaks.
-5. **Render interactive charts.** Fetch historical candle data and render it as a line or candlestick chart. Add time range selectors (1D, 1W, 1M, 1Y). Make the chart responsive and add tooltips on hover showing exact price/date.
-6. **Build the watchlist.** A sidebar or panel showing all tracked symbols with their latest price and daily change. Allow adding/removing symbols. Persist the list so it survives page refresh.
-7. **Add responsive layout.** Dashboard grid: chart takes the main area, watchlist sits in a sidebar on desktop and collapses to a bottom sheet on mobile. Use Tailwind's responsive utilities.
+1. **Set up Redux Toolkit store.** Configure store with slices: `stocksSlice` (quotes, search results), `watchlistSlice` (saved symbols), `uiSlice` (loading, theme). Type the entire store with TypeScript for safety.
 
-## Deployment
+2. **Build async thunks for API calls.** `createAsyncThunk` handles the fetch lifecycle: pending → fulfilled → rejected. Fetch stock quotes, company profiles, and historical data from Finnhub. Handle errors in the rejected case.
 
-Deploy on Netlify. If using Finnhub's free tier directly from the client, the API key is
-exposed — wrap it in a Netlify Function for production. Set `FINNHUB_API_KEY` as an environment variable.
+3. **Build the stock search.** Search bar with debounce. Results dropdown showing matching symbols with company name. On select, dispatch action to set active stock and fetch its data.
+
+4. **Build the chart view with Recharts.** Historical price data rendered as a line/area chart. Time range selector (1D, 1W, 1M, 3M, 1Y). Responsive container. Tooltip showing price on hover.
+
+5. **Implement the watchlist.** Add/remove symbols. Show current price and daily change (green/red) for each. Click to navigate to that stock's detail. Persist watchlist in Redux with localStorage middleware.
+
+6. **Add number formatting.** Stock prices need proper formatting: 2 decimal places, comma separators, +/- prefix for changes, color coding (green for up, red for down). Create utility formatters.
+
+7. **Deploy on Netlify.** Set `VITE_FINNHUB_API_KEY` or use Netlify Functions for API key protection.
 
 ## Tips
 
-- Financial data formatting is surprisingly tricky. Always use `Intl.NumberFormat` with explicit currency and decimal options — never format prices with string concatenation.
-- Polling intervals should be configurable and respect API rate limits. The free Finnhub tier allows 60 calls/minute — plan your refresh strategy around this.
-- Extension: add WebSocket support for truly real-time quotes (Finnhub offers a WebSocket endpoint), or add a portfolio tracker with buy/sell history and P&L calculation.
-
-## README Guidance
-
-The project repo's README should include a short description, a screenshot of the dashboard
-with charts and watchlist, the live demo link, tech stack, API key setup, and local dev steps.
+- Redux Toolkit vs Zustand: use Redux when you have complex interconnected state with many async operations and need DevTools for debugging. Use Zustand for simpler, more isolated state.
+- `createAsyncThunk` automatically dispatches pending/fulfilled/rejected actions. Handle all three in `extraReducers` to show loading spinners, display data, or show error messages.
+- Extension: add real-time WebSocket quotes (Finnhub offers WebSocket), portfolio tracking, price alerts, or comparison mode (overlay multiple stocks).

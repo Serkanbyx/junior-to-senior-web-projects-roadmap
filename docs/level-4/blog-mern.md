@@ -1,6 +1,6 @@
 # Blog with Comments & Likes
 
-> A fullstack blog with comment threads, like system, and optimistic UI updates.
+> A fullstack blog platform with three-tier role system (User → Author → Admin), post approval workflow, guest likes, and a comprehensive admin panel.
 
 **Level:** 4 &nbsp;·&nbsp; **Status:** ✅ Built
 &nbsp;·&nbsp; [Live Demo](https://blog-mernn.netlify.app/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/blog-mern)
@@ -9,41 +9,52 @@
 
 ## Purpose
 
-This project adds relational data to the blog: posts have comments, comments have authors,
-and posts can be liked. It teaches you to model one-to-many relationships in MongoDB, handle
-nested resources in REST APIs, and implement optimistic UI (update the interface immediately,
-then sync with the server). These patterns are core to any social or content platform.
+This project adds organizational complexity to blogging: multiple roles with different
+permissions, content moderation workflows, and engagement features. Users can read and
+comment, authors can write posts pending approval, and admins moderate everything. It
+teaches role-based access control, approval workflows, fingerprint-based guest interactions,
+and building distinct interfaces for different user types.
 
 ## Tech Stack
 
-- **Frontend:** React, TypeScript, Tailwind CSS
-- **Backend:** Node.js, Express, MongoDB (Mongoose)
-- **Auth:** JWT
-- **Key libraries / tools:** Mongoose populate, Axios, optimistic state updates
+- **Frontend:** React 19, Vite 6, Tailwind CSS 4, React Router 7, React Hook Form
+- **Backend:** Node.js, Express 5, MongoDB (Mongoose 9)
+- **Auth:** JWT (httpOnly cookies) + bcryptjs
+- **Image uploads:** Cloudinary 2
+- **Email:** Nodemailer
+- **Validation:** express-validator
+- **Security:** Helmet, express-rate-limit, express-mongo-sanitize
+- **UX:** React Icons, dark/light theme with persistent preferences
 - **Deployment:** Netlify (frontend) + Render (backend)
 
 ## Build Steps
 
-1. **Model relationships.** Post: `{ title, content, author, likes: [userId], likesCount, commentsCount }`. Comment: `{ post: ObjectId, author: ObjectId, text, createdAt }`. Use Mongoose `populate` to resolve author names.
-2. **Build post API with social features.** `POST /posts/:id/like` (toggle like — add or remove userId from likes array). `GET /posts/:id/comments` (paginated). `POST /posts/:id/comments` (add comment). All require auth.
-3. **Implement like toggle.** One endpoint handles both like and unlike: if userId is in the likes array, remove it (unlike); otherwise add it (like). Update `likesCount` atomically with `$inc`. Return the new state.
-4. **Build the optimistic like UI.** On click, immediately update the like count and icon color in React state. Then send the API request. If it fails, revert the state. This makes the UI feel instant.
-5. **Build the comment section.** Below each post, show comments with author name, text, and timestamp. A form to add a new comment. On submit, optimistically add the comment to the list, then confirm with the API response.
-6. **Add comment count and preview.** On the post list page, show the comment count and the first 1-2 comments as a preview. Fetch this data from the API in a single call (use MongoDB `$lookup` or populate with limit).
-7. **Handle edge cases.** Deleted users' comments (show "Deleted User"), rapid like toggling (debounce or disable during API call), and comment pagination (load more button).
+1. **Design the three-tier role system.** User (read + comment), Author (write posts), Admin (moderate everything). Users can request Author promotion. Admins review and approve/reject author requests. Each role sees a different dashboard.
+
+2. **Build the post approval workflow.** Authors submit posts → status is "pending." Admins see pending posts in their dashboard and can approve or reject (with reason). Only approved posts appear on the public blog. Authors see their post statuses.
+
+3. **Implement guest likes with fingerprinting.** Visitors can like posts without registering. Use browser fingerprinting (combination of user-agent, screen resolution, etc.) to identify unique guests and prevent duplicate likes. This increases engagement without forcing registration.
+
+4. **Build the comment system.** Registered users can comment on posts. Comments show author name and timestamp. Authenticated author feedback on their own posts is visually distinct. Delete own comments. Admin can moderate any comment.
+
+5. **Build the admin panel.** Dashboard with platform stats. User management (view users, approve author requests). Post moderation (approve/reject pending posts). Comment oversight. All in a dedicated admin layout with sidebar navigation.
+
+6. **Add theme and privacy features.** Dark/light mode with CSS variables and persistent user preference (stored in profile). Privacy controls: toggle public profile visibility, toggle liked posts visibility. Settings page with appearance, privacy, notifications, and content preferences.
+
+7. **Build the public blog UI.** Post feed with pagination and sorting (newest, popular, most commented). Category tags for filtering. Individual post pages with Cloudinary-hosted cover images. Responsive drawer navigation for mobile.
 
 ## Deployment
 
-Frontend on Netlify, backend on Render. Standard MERN deployment with `MONGODB_URI`,
-`JWT_SECRET`, and `VITE_API_URL`.
+Backend on Render with `MONGODB_URI`, `JWT_SECRET`, `CLOUDINARY_*`, `SMTP_*`. Frontend on
+Netlify with `VITE_API_URL`. JWT in httpOnly cookies requires `sameSite` and `secure` flags.
 
 ## Tips
 
-- Optimistic updates make your app feel 10x faster. The pattern: update local state → call API → on error, revert state and show a toast. For likes, this eliminates the perceived latency entirely.
-- Store likes as an array of userIds on the post document for simplicity. For high-traffic posts (millions of likes), you'd use a separate collection — but for this scale, embedded is correct.
-- Extension: add nested replies (comments on comments), reaction types (like, love, laugh), or a notification when someone comments on your post.
+- The approval workflow pattern: separate "draft" from "published" status with an intermediate "pending" state. This is how real CMS platforms (WordPress, Medium partner program) handle content moderation at scale.
+- Guest likes with fingerprinting trade accuracy for frictionlessness. Some users will bypass it (incognito mode), but the engagement boost from not requiring login far outweighs the minor inflation.
+- Extension: add nested comment replies, reaction types (love, insightful, funny), author analytics dashboard, or email notifications on new comments.
 
 ## README Guidance
 
-The project repo's README should include a description, screenshots showing posts with
-likes and comments, tech stack, environment variables, and setup instructions.
+The project repo's README should include a description, screenshots of public blog, author
+dashboard, and admin panel, role system explanation, tech stack, and setup instructions.

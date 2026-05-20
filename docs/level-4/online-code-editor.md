@@ -1,6 +1,6 @@
 # Online Code Editor
 
-> A fullstack collaborative code editor with Monaco editor, real-time sync, and code execution.
+> CodeNest — a fullstack online code editor with real-time collaboration via Yjs CRDT, Monaco Editor, snippet sharing, and Socket.io sync.
 
 **Level:** 4 &nbsp;·&nbsp; **Status:** ✅ Built
 &nbsp;·&nbsp; [Live Demo](https://online-code-editorr.netlify.app/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/online-code-editor)
@@ -9,43 +9,55 @@
 
 ## Purpose
 
-This is one of the most technically impressive Level 4 projects. It combines the Monaco editor
-(the engine behind VS Code), real-time collaboration via WebSockets, and server-side code
-execution in sandboxed environments. It teaches you to integrate a complex third-party
-component, handle operational transforms or CRDT for collaboration, and safely execute
-untrusted code.
+This project integrates Monaco Editor (the engine behind VS Code) with real-time
+collaborative editing via Yjs — a Conflict-free Replicated Data Type (CRDT) library.
+CRDTs solve the hardest problem in collaboration: multiple users editing the same document
+simultaneously without conflicts. This is the technology behind Google Docs and Figma's
+multiplayer. You'll also build snippet sharing and code execution.
 
 ## Tech Stack
 
-- **Frontend:** React, TypeScript, Tailwind CSS
-- **Backend:** Node.js, Express, Socket.io, MongoDB
-- **Auth:** JWT
-- **Key libraries / tools:** Monaco Editor (@monaco-editor/react), Socket.io, Docker (sandboxed execution)
+- **Frontend:** React 19, Vite 6, Tailwind CSS 4, React Router 7
+- **Backend:** Node.js, Express 5, MongoDB (Mongoose 8), Socket.io 4
+- **Code Editor:** Monaco Editor (@monaco-editor/react 4, monaco-editor 0.52)
+- **Collaboration:** Yjs 13 + y-protocols (CRDT-based real-time sync)
+- **Auth:** JWT + bcryptjs
+- **Real-time:** Socket.io (transport layer for Yjs sync)
+- **Security:** Helmet, express-rate-limit, express-mongo-sanitize
+- **API docs:** Swagger
+- **UX:** Lucide React, React Hot Toast, clsx
 - **Deployment:** Netlify (frontend) + Render (backend)
 
 ## Build Steps
 
-1. **Integrate Monaco Editor.** Install `@monaco-editor/react`. Configure it with language support (JavaScript, TypeScript, Python), theme (dark/light), and options (minimap, line numbers, word wrap). Handle value changes.
-2. **Build file/project management.** Create, save, rename, and delete files in MongoDB. A file explorer sidebar showing the project structure. Load file content into the editor on select.
-3. **Implement real-time collaboration.** Use Socket.io to sync editor changes between users. On each keystroke, emit the change (position + text). Apply incoming changes from other users to the local editor. Handle cursor positions.
-4. **Add code execution.** A "Run" button that sends the code to the backend. The backend executes it in a sandboxed environment (Docker container or Node's `vm` module with timeout). Return stdout/stderr to the client.
-5. **Build the output panel.** A terminal-like panel below the editor showing execution output. Support for stdin (basic input prompts). Clear output on new run. Show execution time and memory usage.
-6. **Add sharing and sessions.** Generate shareable links for collaborative editing sessions. Anyone with the link can join and see real-time changes. Show connected users with their cursor colors.
-7. **Build project management.** A dashboard showing saved projects. Fork (duplicate) other users' public projects. Templates for quick start (blank, HTML boilerplate, Node starter).
+1. **Integrate Monaco Editor.** Install `@monaco-editor/react` and configure: multi-language support (JavaScript, TypeScript, Python, HTML, CSS), dark/light themes, minimap, line numbers, word wrap. Handle controlled value updates without cursor jumping.
+
+2. **Set up Yjs for collaboration.** Create a Yjs document (`Y.Doc`) with a `Y.Text` type for the editor content. Connect it to Monaco via the Yjs Monaco binding. Every keystroke is a Yjs operation — automatically mergeable with concurrent edits from other users.
+
+3. **Build the Socket.io sync provider.** Yjs needs a transport layer to sync between clients. Use Socket.io: when a user makes an edit, Yjs generates an update (binary diff). Emit it via Socket.io to the server, which broadcasts to all other clients in the same session. Apply incoming updates to the local Yjs doc — Monaco updates automatically.
+
+4. **Build session/room management.** Users create collaborative sessions with unique IDs. Share the session link. Anyone with the link joins and sees real-time edits. Show connected users with their cursor positions and colors. Handle disconnect/reconnect gracefully.
+
+5. **Build snippet CRUD.** Save code as reusable snippets to MongoDB: `{ title, language, code, author, public }`. Browse and fork public snippets. Snippet ownership and privacy controls. Load a snippet into the editor for editing or forking.
+
+6. **Add code execution (sandboxed).** A "Run" button that sends code to the backend. Execute in a sandboxed environment (Node.js `vm` module with strict timeout). Return stdout/stderr to the client. Display in an output panel below the editor. Never use raw `eval()`.
+
+7. **Build the user experience.** User authentication (JWT), saved snippets dashboard, fork other users' public snippets, syntax highlighting for 10+ languages, keyboard shortcuts (Cmd+S to save), and responsive layout with resizable panels.
 
 ## Deployment
 
-Backend on Render (Socket.io supported). Code execution requires Docker on the server —
-for demo purposes, use Node's `vm` module with strict timeouts. Frontend on Netlify.
+Backend on Render with `MONGODB_URI`, `JWT_SECRET`, `CLIENT_URL`. Frontend on Netlify
+with `VITE_API_URL`. Monaco Editor is ~2MB — use dynamic import for initial load performance.
 
 ## Tips
 
-- Never execute user code directly with `eval()` or `child_process.exec()` without sandboxing. Use Docker containers with CPU/memory limits and network isolation, or at minimum Node's `vm` module with a timeout.
-- Monaco Editor is large (~2MB). Use dynamic import (`React.lazy`) and show a loading skeleton while it loads. This prevents blocking the initial page render.
-- Extension: add language server protocol (LSP) for autocomplete, git integration, deployment from the editor, or AI code suggestions.
+- Yjs CRDTs are the key technology. Unlike Operational Transform (OT), CRDTs guarantee convergence without a central server ordering operations. Two users can edit offline, reconnect, and their documents will merge correctly — mathematically proven.
+- Monaco Editor is heavy (~2MB). Load it lazily with React.lazy and show a code-themed skeleton while it loads. This prevents blocking the initial page render for users who haven't navigated to the editor yet.
+- Socket.io as Yjs transport: Yjs updates are binary (`Uint8Array`). Send them as binary frames over Socket.io for efficiency. The server doesn't need to understand the content — it just broadcasts to room participants.
+- Extension: add Language Server Protocol (LSP) for autocomplete, multiple file tabs, git integration, deployment from the editor, or AI code suggestions.
 
 ## README Guidance
 
-The project repo's README should include a description, screenshots of the editor with
-collaboration, tech stack, architecture diagram, security notes about sandboxing, environment
-variables, and setup instructions.
+The project repo's README should include a description, screenshots of collaborative editing
+(multiple cursors), architecture diagram (Monaco ↔ Yjs ↔ Socket.io), tech stack, security
+notes about sandboxed execution, and setup instructions.

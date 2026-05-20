@@ -1,6 +1,6 @@
-# Pagination + Search API
+# Pagination & Search API
 
-> A REST API demonstrating cursor/offset pagination, full-text search, compound filtering, and database indexing.
+> A RESTful API demonstrating server-side pagination, regex-powered search, category filtering, and flexible sorting over SQLite.
 
 **Level:** 3 &nbsp;·&nbsp; **Status:** ✅ Built
 &nbsp;·&nbsp; [Live Demo](https://pagination-search-api.onrender.com/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/pagination-search-api)
@@ -9,42 +9,49 @@
 
 ## Purpose
 
-Every production API needs pagination and search. This project teaches you to handle large
-datasets efficiently: offset-based and cursor-based pagination, text search with relevance
-scoring, compound query building, and database indexing for performance. These patterns apply
-to every list endpoint you'll ever build — users, products, posts, logs.
+Every real API needs pagination (you can't return 10,000 records at once) and search
+(users need to find things). This project focuses entirely on these two patterns: building
+a robust pagination system with metadata, implementing SQL-level search with LIKE/regex,
+and combining filters, sorting, and pagination in a single flexible endpoint.
 
 ## Tech Stack
 
-- **Frontend:** none (API only)
-- **Backend:** Node.js, Express
-- **Database:** MongoDB (Mongoose)
-- **Key libraries / tools:** Mongoose text indexes, query builders, dotenv
+- **Runtime:** Node.js
+- **Framework:** Express 5
+- **Database:** SQLite (better-sqlite3)
+- **Validation:** express-validator
+- **Security:** Helmet 8
+- **Documentation:** Swagger (swagger-jsdoc + swagger-ui-express)
 - **Deployment:** Render.com
 
 ## Build Steps
 
-1. **Seed the database.** Create a collection with 500+ documents (e.g. products or articles) with varied fields: title, description, category, price, rating, createdAt. Use a seed script that generates realistic data.
-2. **Implement offset pagination.** Support `?page=2&limit=20`. Calculate `skip = (page - 1) * limit`. Return metadata: `{ data, total, page, limit, totalPages, hasNext, hasPrev }`. This is the most common pagination pattern.
-3. **Add cursor-based pagination.** Support `?cursor=<lastId>&limit=20`. Query with `{ _id: { $gt: cursor } }`. Return `{ data, nextCursor }`. Explain in the response which method is in use. Cursor pagination is faster for large datasets.
-4. **Build text search.** Create a MongoDB text index on `title` and `description`. Support `?q=search+term`. Use `$text: { $search }` with `$meta: "textScore"` for relevance sorting. Return results ranked by relevance.
-5. **Add compound filtering.** Support `?category=electronics&minPrice=10&maxPrice=100&minRating=4`. Build the query object dynamically — only include filters that are present in the query params.
-6. **Implement sorting.** Support `?sort=price,-rating` (price ascending, rating descending). Parse the sort string into a Mongoose sort object. Default to relevance score when searching, createdAt otherwise.
-7. **Add database indexes.** Create indexes on commonly filtered/sorted fields (category, price, rating). Create a compound index for common query patterns. Measure query performance with `.explain()` before and after.
+1. **Seed the database.** Create a products/items table with enough data to paginate (50-100 records). Include varied categories, prices, and descriptions to make filtering meaningful. Seed script runs on first start.
+
+2. **Build basic pagination.** Query params: `?page=1&limit=10`. SQL: `LIMIT ? OFFSET ?` where offset = (page - 1) * limit. Count total records with a separate `SELECT COUNT(*)`. Return: `{ data, pagination: { page, limit, total, totalPages, hasNext, hasPrev } }`.
+
+3. **Implement search.** `?q=keyword` searches across title and description using `WHERE title LIKE ? OR description LIKE ?` with `%keyword%` wildcards. Case-insensitive with `COLLATE NOCASE`. Search combines with pagination — page through search results.
+
+4. **Add category filtering.** `?category=electronics` adds a `WHERE category = ?` condition. Multiple filters combine with AND. Available categories discoverable via a dedicated endpoint: `GET /categories`.
+
+5. **Implement flexible sorting.** `?sort=price&order=asc` or `?sort=-price` (minus prefix = descending). Whitelist valid sort columns to prevent SQL injection. Default sort: newest first. Sorting works with all other filters.
+
+6. **Combine everything.** A single endpoint handles all combinations: `GET /items?q=phone&category=electronics&sort=price&order=asc&page=2&limit=5`. Build the SQL query dynamically from present params. Missing params use defaults.
+
+7. **Document the query interface.** Swagger documents every query param with its type, default, and allowed values. Show example responses with pagination metadata.
 
 ## Deployment
 
-Deploy on Render.com. Set `MONGODB_URI`. Run the seed script once after first deploy to
-populate the database. Consider using MongoDB Atlas's free tier for a hosted database.
+Deploy on Render.com. SQLite database seeds automatically on first run. No external
+services required.
 
 ## Tips
 
-- Offset pagination is simple but degrades on large datasets (`skip(10000)` is slow). Cursor pagination scales but doesn't support "jump to page 5." Offer both and let the client choose.
-- Always set a maximum limit (e.g. 100) to prevent clients from requesting `?limit=999999` and overloading your database.
-- Extension: add fuzzy search (MongoDB Atlas Search or Fuse.js), autocomplete suggestions, or faceted search (counts per category).
+- Always validate and whitelist sort columns. If you blindly interpolate `req.query.sort` into SQL, it's an injection vector. Maintain an array of allowed columns and reject anything not in the list.
+- Return `hasNext` and `hasPrev` booleans in pagination metadata — they let the frontend show/hide Next/Previous buttons without calculating from page numbers.
+- Extension: add cursor-based pagination (more efficient for real-time data), full-text search with ranking, or faceted filtering (show count per category).
 
 ## README Guidance
 
-The project repo's README should include a description, endpoint documentation with all
-supported query params, pagination response format examples, and local setup steps including
-the seed command.
+The project repo's README should include a description, API endpoint with all query params
+documented, example responses with pagination, tech stack, and setup instructions.

@@ -1,49 +1,57 @@
 # Currency Converter API
 
-> A currency conversion API with external rate fetching, response caching, and historical rate tracking.
+> A production-ready RESTful Currency Converter API supporting 160+ currencies with Redis caching, rate limiting, and graceful degradation.
 
 **Level:** 3 &nbsp;·&nbsp; **Status:** ✅ Built
-&nbsp;·&nbsp; [Live Demo](https://currency-converter-api-9rfm.onrender.com/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/currency-converter-api)
+&nbsp;·&nbsp; [Live Demo](https://currency-converter-api-l38v.onrender.com/) &nbsp;·&nbsp; [Source Code](https://github.com/Serkanbyx/currency-converter-api)
 
 ---
 
 ## Purpose
 
-This project deepens your understanding of the proxy/caching pattern with a focus on data
-freshness. Exchange rates change frequently but not every second — knowing when to serve
-cached data vs. when to fetch fresh data is a key backend skill. You'll also learn to handle
-external API failures gracefully (serve stale cache) and build a useful utility API.
+This project introduces Redis as a caching layer — the most important performance pattern
+in backend development. Exchange rates don't change every second, so caching them avoids
+hitting the external API on every request. You'll learn Redis commands, TTL-based expiry,
+cache-aside pattern, and graceful degradation (what happens when Redis is down?).
 
 ## Tech Stack
 
-- **Frontend:** none (API only)
-- **Backend:** Node.js, Express
-- **Database:** MongoDB (rate history) or in-memory cache
-- **Key libraries / tools:** axios (HTTP client), node-cache (TTL caching), dotenv
+- **Runtime:** Node.js
+- **Framework:** Express 5
+- **Cache:** Redis 5 (redis npm package)
+- **HTTP Client:** Axios (for ExchangeRate-API)
+- **Security:** Helmet 8, express-rate-limit
+- **Documentation:** Swagger (swagger-jsdoc + swagger-ui-express)
 - **Deployment:** Render.com
 
 ## Build Steps
 
-1. **Choose a rates provider.** Use a free exchange rate API (ExchangeRate-API, Open Exchange Rates, or Fixer.io free tier). Store the API key in environment variables. Understand the provider's rate limits and update frequency.
-2. **Build the conversion endpoint.** `GET /convert?from=USD&to=EUR&amount=100`. Validate that currencies are valid ISO codes, amount is positive. Return `{ from, to, amount, result, rate, timestamp }`.
-3. **Implement caching.** Cache exchange rates with a 1-hour TTL. On each request, check cache first. On cache miss, fetch from the external API and store. Return cache age in the response headers (`X-Cache: HIT/MISS`, `X-Cache-Age`).
-4. **Handle stale cache gracefully.** If the external API is down and the cache has expired, serve the stale cached rates with a warning header rather than returning an error. Stale data is better than no data for exchange rates.
-5. **Support multiple conversions.** `GET /rates?base=USD` returns all available rates for a base currency. `GET /convert/batch` accepts multiple conversion pairs in a single request to reduce round trips.
-6. **Store rate history.** Periodically save fetched rates to MongoDB. Build a `GET /history?from=USD&to=EUR&days=30` endpoint that returns historical rates for charting.
-7. **Add supported currencies list.** `GET /currencies` returns all supported currency codes with their names. Cache this permanently (it rarely changes). Use it for client-side validation.
+1. **Set up the conversion endpoint.** `GET /convert?from=USD&to=EUR&amount=100` calls ExchangeRate-API for the rate, calculates the result, and returns: `{ from, to, amount, rate, result, cached }`.
+
+2. **Integrate Redis caching.** Before calling the external API, check Redis: `GET rate:USD:EUR`. If it exists and is fresh, return it immediately (add `cached: true` to response). If missing, fetch from API, store in Redis with TTL (e.g., `EX 3600` for 1 hour), then return.
+
+3. **Implement the cache-aside pattern.** The flow: check cache → if hit, return → if miss, fetch from source → store in cache → return. This is the most common caching pattern. All cache reads are optimistic (best-effort).
+
+4. **Add graceful degradation.** If Redis is unavailable (connection error), don't crash — fall back to calling the external API directly (slower but functional). Log the Redis failure for monitoring. The API continues working without cache.
+
+5. **Build supporting endpoints.** `GET /currencies` (list all 160+ supported currencies), `GET /health` (check API + Redis status). Cache the currencies list aggressively (24h TTL) since it rarely changes.
+
+6. **Add rate limiting.** Protect both your API and the upstream ExchangeRate-API from abuse. Limit to 100 requests per 15 minutes per IP. Return 429 with clear messaging.
+
+7. **Deploy to Render.** Set `EXCHANGE_RATE_API_KEY` and `REDIS_URL` (use Upstash or Render Redis). In-memory fallback if Redis is unavailable ensures zero downtime.
 
 ## Deployment
 
-Deploy on Render.com. Set `MONGODB_URI`, `EXCHANGE_RATE_API_KEY`, and `CACHE_TTL_MINUTES`
-as environment variables. The cache ensures you stay within the external API's rate limits.
+Deploy on Render.com. Redis on Upstash (free tier) or Render Redis add-on. Set
+`EXCHANGE_RATE_API_KEY` and `REDIS_URL` as environment variables.
 
 ## Tips
 
-- A 1-hour cache TTL is reasonable for exchange rates in most non-trading contexts. For trading apps, you'd use WebSocket streams — but for a general utility, hourly updates are fine.
-- Always validate currency codes against a known list before calling the external API. Invalid codes waste API quota and return confusing errors.
-- Extension: add currency conversion with historical rates ("what was 100 USD in EUR on 2024-01-01?"), automatic refresh via cron job, or a simple conversion widget frontend.
+- The cache-aside pattern with Redis: `GET key` → null means cache miss → fetch data → `SET key value EX ttl` → return. This pattern appears in every high-performance backend. Master it here, use it everywhere.
+- Graceful degradation is what separates production code from tutorial code. If your cache dies, your API should still work (slower, but functional). Never let a cache failure cascade into an API outage.
+- Extension: add historical rates endpoint, rate change alerts, batch conversion, or WebSocket for real-time rate updates.
 
 ## README Guidance
 
-The project repo's README should include a description, endpoint table with example
-request/response, cache behavior explanation, environment variables, and local setup steps.
+The project repo's README should include a description, API endpoints, caching strategy
+explanation, Redis setup instructions, tech stack, and deployment guide.
