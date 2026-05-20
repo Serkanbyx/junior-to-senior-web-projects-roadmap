@@ -84,22 +84,22 @@ By the end of this level you can call yourself a junior frontend developer.
 
 | Project | What you'll build | Guide | Links |
 |---------|-------------------|-------|-------|
-| ✅ Weather App (API) | `fetch`, async/await, API keys, error states | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Recipe App | Search, API consumption, detail views | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Stock Market Dashboard | Charts, polling, number formatting | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Real Estate Listing | Filtering, sorting, card grids | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Expense Tracker | State management, categories, totals | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Notes App | Persistence with `localStorage`, CRUD | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Music Player | Audio API, playlist state, progress bar | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Travel Planner | Multi-step state, itinerary building | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Interactive Map | Leaflet/Mapbox, markers, geolocation | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Fitness Tracker | Data entry, progress visualization | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ E-commerce Frontend | Product grid, filters, cart state | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Chat UI | Message list, input, component composition | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Flappy Bird | Game loop, collision detection, canvas | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Chess Board Logic | Board representation, move validation | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Social Media Dashboard | Widget layout, mock data, responsive grid | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Analytics Dashboard | Charts, KPI cards, data visualization | [Guide](#) | [Code](#) · [Demo](#) |
+| ✅ Weather App (API) | `fetch`, async/await, API keys, error states | [Guide](#) | [Code](https://github.com/Serkanbyx/weather-app-advanced) · [Demo](https://weather-app-advancedd.netlify.app/) |
+| ✅ Recipe App | Search, API consumption, detail views | [Guide](#) | [Code](https://github.com/Serkanbyx/recipe-web-app) · [Demo](https://recipe-web-appp.netlify.app/) |
+| ✅ Stock Market Dashboard | Charts, polling, number formatting | [Guide](#) | [Code](https://github.com/Serkanbyx/stock-market-dashboard) · [Demo](https://stock-market-dashboarddd.netlify.app/) |
+| ✅ Real Estate Listing | Filtering, sorting, card grids | [Guide](#) | [Code](https://github.com/Serkanbyx/real-estate-listing) · [Demo](https://real-estate-listingg.netlify.app/) |
+| ✅ Expense Tracker | State management, categories, totals | [Guide](#) | [Code](https://github.com/Serkanbyx/expense-tracker) · [Demo](https://expense-trackerrrrrrrr.netlify.app/) |
+| ✅ Notes App | Persistence with `localStorage`, CRUD | [Guide](#) | [Code](https://github.com/Serkanbyx/notes-web-app) · [Demo](https://notes-web-apppp.netlify.app/) |
+| ✅ Music Player | Audio API, playlist state, progress bar | [Guide](#) | [Code](https://github.com/Serkanbyx/music-player) · [Demo](https://music-playerrrrr.netlify.app/player) |
+| ✅ Travel Planner | Multi-step state, itinerary building | [Guide](#) | [Code](https://github.com/Serkanbyx/travel-planner) · [Demo](https://travel-plannerrr.netlify.app/plans) |
+| ✅ Interactive Map | Leaflet/Mapbox, markers, geolocation | [Guide](#) | [Code](https://github.com/Serkanbyx/interactive-map) · [Demo](https://interactive-mappp.netlify.app/map) |
+| ✅ Fitness Tracker | Data entry, progress visualization | [Guide](#) | [Code](https://github.com/Serkanbyx/fitness-tracker) · [Demo](https://fitness-trackerrrrr.netlify.app/dashboard) |
+| ✅ E-commerce Frontend | Product grid, filters, cart state | [Guide](#) | [Code](https://github.com/Serkanbyx/e-commerce-frontend) · [Demo](https://e-commerce-frontendd.netlify.app/) |
+| ✅ Chat UI | Message list, input, component composition | [Guide](#) | [Code](https://github.com/Serkanbyx/chat-ui) · [Demo](https://chat-uiii.netlify.app/) |
+| ✅ Flappy Bird | Game loop, collision detection, canvas | [Guide](#) | [Code](https://github.com/Serkanbyx/flappy-bird) · [Demo](https://flappy-birddddd.netlify.app/) |
+| ✅ Chess Board Logic | Board representation, move validation | [Guide](#) | [Code](https://github.com/Serkanbyx/basic-chess-board-logic) · [Demo](https://basic-chess-board-logic.netlify.app/) |
+| ✅ Social Media Dashboard | Widget layout, mock data, responsive grid | [Guide](#) | [Code](https://github.com/Serkanbyx/social-media-dashboard) · [Demo](https://social-media-dashboardd.netlify.app/dashboard) |
+| ✅ Analytics Dashboard | Charts, KPI cards, data visualization | [Guide](#) | [Code](https://github.com/Serkanbyx/analytics-dashboard) · [Demo](https://analytics-dashboardd.netlify.app/login) |
 
 ## Level 3 — Backend Fundamentals
 
