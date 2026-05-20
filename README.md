@@ -108,23 +108,23 @@ middleware, queues. This is where you become a backend developer.
 
 | Project | What you'll build | Guide | Links |
 |---------|-------------------|-------|-------|
-| ✅ Authentication API | JWT/sessions, password hashing, protected routes | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ CRUD User API | REST design, controllers, DB models | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ RESTful To-Do API | Resource modeling, status codes, validation | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Notes API (Auth) | Auth middleware, user-scoped data | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Contact Form API | Email sending (Nodemailer) + DB storage | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ URL Shortener | Hashing, redirects, click tracking | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Weather Proxy API | Hiding API keys, caching, proxying | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Pagination + Search API | Query params, indexing, filtering | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ MCQ/Quiz API | Nested data, scoring logic | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ File Upload API | Multipart handling with Multer, validation | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Newsletter System | Subscriptions, scheduled sends, templates | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Currency Converter API | External API, caching, rate handling | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Rate Limiter API | Middleware, store-backed throttling | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Expense Tracker Backend | Aggregation, reports, user data | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Job Queue | Background jobs with BullMQ + Redis, retries | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ OAuth Login | OAuth2 flow with Google/GitHub, Passport | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Chat App Backend | WebSockets with Socket.io, rooms, events | [Guide](#) | [Code](#) · [Demo](#) |
+| ✅ Authentication API | JWT/sessions, password hashing, protected routes | [Guide](#) | [Code](https://github.com/Serkanbyx/authentication-api) · [Demo](https://authentication-api-3bfr.onrender.com/) |
+| ✅ CRUD User API | REST design, controllers, DB models | [Guide](#) | [Code](https://github.com/Serkanbyx/crud-user-api) · [Demo](https://crud-user-api-slmp.onrender.com/) |
+| ✅ RESTful To-Do API | Resource modeling, status codes, validation | [Guide](#) | [Code](https://github.com/Serkanbyx/restful-to-do-api) · [Demo](https://restful-to-do-api.onrender.com/) |
+| ✅ Notes API (Auth) | Auth middleware, user-scoped data | [Guide](#) | [Code](https://github.com/Serkanbyx/notes-api) · [Demo](https://notes-api-7mai.onrender.com/) |
+| ✅ Contact Form API | Email sending (Nodemailer) + DB storage | [Guide](#) | [Code](https://github.com/Serkanbyx/contact-form-api) · [Demo](https://contact-form-api-woaf.onrender.com/) |
+| ✅ URL Shortener | Hashing, redirects, click tracking | [Guide](#) | [Code](https://github.com/Serkanbyx/url-shortener-api) · [Demo](https://url-shortener-xzz2.onrender.com/) |
+| ✅ Weather Proxy API | Hiding API keys, caching, proxying | [Guide](#) | [Code](https://github.com/Serkanbyx/weather-proxy-api) · [Demo](https://weather-proxy-api-yrc5.onrender.com/) |
+| ✅ Pagination + Search API | Query params, indexing, filtering | [Guide](#) | [Code](https://github.com/Serkanbyx/pagination-search-api) · [Demo](https://pagination-search-api.onrender.com/) |
+| ✅ MCQ/Quiz API | Nested data, scoring logic | [Guide](#) | [Code](https://github.com/Serkanbyx/mcq-quiz-api) · [Demo](https://mcq-quiz-api.onrender.com/) |
+| ✅ File Upload API | Multipart handling with Multer, validation | [Guide](#) | [Code](https://github.com/Serkanbyx/file-upload-api) · [Demo](https://file-upload-api-bnql.onrender.com/) |
+| ✅ Newsletter System | Subscriptions, scheduled sends, templates | [Guide](#) | [Code](https://github.com/Serkanbyx/newsletter-system) · [Demo](https://newsletter-system-6hvv.onrender.com/) |
+| ✅ Currency Converter API | External API, caching, rate handling | [Guide](#) | [Code](https://github.com/Serkanbyx/currency-converter-api) · [Demo](https://currency-converter-api-9rfm.onrender.com/) |
+| ✅ Rate Limiter API | Middleware, store-backed throttling | [Guide](#) | [Code](https://github.com/Serkanbyx/rate-limiter-api) · [Demo](https://rate-limiter-api-p1y1.onrender.com/api-docs/) |
+| ✅ Expense Tracker Backend | Aggregation, reports, user data | [Guide](#) | [Code](https://github.com/Serkanbyx/expense-tracker-backend) · [Demo](https://expense-tracker-backend-wwyp.onrender.com/) |
+| ✅ Job Queue | Background jobs with BullMQ + Redis, retries | [Guide](#) | [Code](https://github.com/Serkanbyx/job-queue-api) · [Demo](https://job-queue-f62a.onrender.com/) |
+| ✅ OAuth Login | OAuth2 flow with Google/GitHub, Passport | [Guide](#) | [Code](https://github.com/Serkanbyx/oauth-login-backend) · [Demo](https://oauth-login-backend-fxh8.onrender.com/) |
+| ✅ Chat App Backend | WebSockets with Socket.io, rooms, events | [Guide](#) | [Code](https://github.com/Serkanbyx/chat-app-backend) · [Demo](https://chat-app-backend-zww3.onrender.com/) |
 
 ## Level 4 — Fullstack MERN
 
