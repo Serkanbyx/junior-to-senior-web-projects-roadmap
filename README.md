@@ -160,8 +160,8 @@ These projects are about **architectural reasoning** — the kind of work that e
 
 | Project | What you'll build | Guide | Links |
 |---------|-------------------|-------|-------|
-| ✅ Multiplayer Game Backend | Authoritative server, state sync, latency handling | [Guide](#) | [Code](#) · [Demo](#) |
-| ✅ Vehicle Tracking System | Real-time GPS streams, geofencing | [Guide](#) | [Code](#) · [Demo](#) |
+| ✅ Multiplayer Game Backend | Authoritative server, state sync, latency handling | [Guide](#) | [Code](https://github.com/Serkanbyx/multiplayer-game-backend) · [Demo](https://multiplayer-game-backend-nu.vercel.app) |
+| ✅ Vehicle Tracking System | Real-time GPS streams, geofencing | [Guide](#) | [Code](https://github.com/Serkanbyx/vehicle-tracking-system) · [Demo](https://vehicle-tracking-system-lemon.vercel.app) |
 | 🚧 IoT Dashboard | Device telemetry, MQTT, time-series data | [Guide](#) | [Code](#) · [Demo](#) |
 | 🚧 Ride-Sharing Backend | Matching, geospatial queries, pricing | [Guide](#) | [Code](#) · [Demo](#) |
 | 🚧 Remote Monitoring System | Metrics ingestion, alerting, dashboards | [Guide](#) | [Code](#) · [Demo](#) |
