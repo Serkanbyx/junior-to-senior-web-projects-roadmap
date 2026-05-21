@@ -150,6 +150,32 @@ By the end of this level you can call yourself a junior frontend developer.
 Node.js, Express, and databases (MongoDB / PostgreSQL). REST design, authentication,
 middleware, queues. This is where you become a backend developer.
 
+<p align="center">
+  <a href="https://authentication-api-3bfr.onrender.com/"><img src="./assets/screenshots/level-3/authentication-api.png" width="19%" alt="Authentication API" /></a>
+  <a href="https://crud-user-api-slmp.onrender.com/"><img src="./assets/screenshots/level-3/crud-user-api.png" width="19%" alt="CRUD User API" /></a>
+  <a href="https://restful-to-do-api.onrender.com/"><img src="./assets/screenshots/level-3/restful-todo-api.png" width="19%" alt="RESTful To-Do API" /></a>
+  <a href="https://notes-api-7mai.onrender.com/"><img src="./assets/screenshots/level-3/notes-api.png" width="19%" alt="Notes API" /></a>
+  <a href="https://contact-form-api-woaf.onrender.com/"><img src="./assets/screenshots/level-3/contact-form-api.png" width="19%" alt="Contact Form API" /></a>
+</p>
+<p align="center">
+  <a href="https://url-shortener-xzz2.onrender.com/"><img src="./assets/screenshots/level-3/url-shortener.png" width="19%" alt="URL Shortener" /></a>
+  <a href="https://weather-proxy-api-yrc5.onrender.com/"><img src="./assets/screenshots/level-3/weather-proxy-api.png" width="19%" alt="Weather Proxy API" /></a>
+  <a href="https://pagination-search-api.onrender.com/"><img src="./assets/screenshots/level-3/pagination-search-api.png" width="19%" alt="Pagination & Search API" /></a>
+  <a href="https://mcq-quiz-api.onrender.com/"><img src="./assets/screenshots/level-3/mcq-quiz-api.png" width="19%" alt="MCQ Quiz API" /></a>
+  <a href="https://file-upload-api-bnql.onrender.com/"><img src="./assets/screenshots/level-3/file-upload-api.png" width="19%" alt="File Upload API" /></a>
+</p>
+<p align="center">
+  <a href="https://newsletter-system-6hvv.onrender.com/"><img src="./assets/screenshots/level-3/newsletter-system.png" width="19%" alt="Newsletter System" /></a>
+  <a href="https://currency-converter-api-9rfm.onrender.com/"><img src="./assets/screenshots/level-3/currency-converter-api.png" width="19%" alt="Currency Converter API" /></a>
+  <a href="https://rate-limiter-api-p1y1.onrender.com/api-docs/"><img src="./assets/screenshots/level-3/rate-limiter-api.png" width="19%" alt="Rate Limiter API" /></a>
+  <a href="https://expense-tracker-backend-wwyp.onrender.com/"><img src="./assets/screenshots/level-3/expense-tracker-backend.png" width="19%" alt="Expense Tracker Backend" /></a>
+  <a href="https://job-queue-f62a.onrender.com/"><img src="./assets/screenshots/level-3/job-queue.png" width="19%" alt="Job Queue" /></a>
+</p>
+<p align="center">
+  <a href="https://oauth-login-backend-fxh8.onrender.com/"><img src="./assets/screenshots/level-3/oauth-login.png" width="19%" alt="OAuth Login" /></a>
+  <a href="https://chat-app-backend-zww3.onrender.com/"><img src="./assets/screenshots/level-3/chat-app-backend.png" width="19%" alt="Chat App Backend" /></a>
+</p>
+
 | Project | What you'll build | Guide | Links |
 |---------|-------------------|-------|-------|
 | ✅ Authentication API | JWT/sessions, password hashing, protected routes | [Guide](./docs/level-3/authentication-api.md) | [Code](https://github.com/Serkanbyx/authentication-api) · [Demo](https://authentication-api-3bfr.onrender.com/) |
