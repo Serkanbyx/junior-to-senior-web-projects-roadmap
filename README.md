@@ -63,25 +63,23 @@ If you finish a level, you can honestly claim the skill it represents. That is t
 Plain JavaScript, the DOM, events, and clean simple UI. No frameworks. The goal is to be
 fluent in the language and the browser before adding any abstraction.
 
-<p align="center">
-  <a href="https://photo-galleryyyyy.netlify.app/"><img src="./assets/screenshots/level-1/photo-gallery.png" width="32%" alt="Photo Gallery" /></a>
-  <a href="https://basic-calculatorrrr.netlify.app/"><img src="./assets/screenshots/level-1/calculator.png" width="32%" alt="Basic Calculator" /></a>
-  <a href="https://memory-gameeeeee.netlify.app/"><img src="./assets/screenshots/level-1/memory-game.png" width="32%" alt="Memory Game" /></a>
-</p>
-<p align="center">
-  <a href="https://type-speed-testt.netlify.app/"><img src="./assets/screenshots/level-1/type-speed-test.png" width="32%" alt="Type Speed Test" /></a>
-  <a href="https://quote-generatorrrrr.netlify.app/"><img src="./assets/screenshots/level-1/quote-generator.png" width="32%" alt="Quote Generator" /></a>
-  <a href="https://weather-app-basicc.netlify.app/"><img src="./assets/screenshots/level-1/weather-app.png" width="32%" alt="Weather App" /></a>
-</p>
-<p align="center">
-  <a href="https://tic-tac-toeeeeeeeeee.netlify.app/"><img src="./assets/screenshots/level-1/tic-tac-toe.png" width="32%" alt="Tic Tac Toe" /></a>
-  <a href="https://countdown-timerrrr.netlify.app/"><img src="./assets/screenshots/level-1/countdown-timer.png" width="32%" alt="Countdown Timer" /></a>
-  <a href="https://simple-to-do-listt.netlify.app/"><img src="./assets/screenshots/level-1/todo-list.png" width="32%" alt="Simple To-Do List" /></a>
-</p>
-<p align="center">
-  <a href="https://bmi-calculatorrrrr.netlify.app/"><img src="./assets/screenshots/level-1/bmi-calculator.png" width="32%" alt="BMI Calculator" /></a>
-  <a href="https://personal-portfolio-websiteee.netlify.app/"><img src="./assets/screenshots/level-1/portfolio.png" width="32%" alt="Personal Portfolio" /></a>
-</p>
+<div align="center">
+<table>
+  <tr>
+    <td align="center"><a href="https://photo-galleryyyyy.netlify.app/"><img src="./assets/screenshots/level-1/photo-gallery.png" width="260" alt="Photo Gallery" /><br /><sub><b>Photo Gallery</b></sub></a></td>
+    <td align="center"><a href="https://basic-calculatorrrr.netlify.app/"><img src="./assets/screenshots/level-1/calculator.png" width="260" alt="Basic Calculator" /><br /><sub><b>Calculator</b></sub></a></td>
+    <td align="center"><a href="https://memory-gameeeeee.netlify.app/"><img src="./assets/screenshots/level-1/memory-game.png" width="260" alt="Memory Game" /><br /><sub><b>Memory Game</b></sub></a></td>
+    <td align="center"><a href="https://type-speed-testt.netlify.app/"><img src="./assets/screenshots/level-1/type-speed-test.png" width="260" alt="Type Speed Test" /><br /><sub><b>Type Speed Test</b></sub></a></td>
+    <td align="center"><a href="https://quote-generatorrrrr.netlify.app/"><img src="./assets/screenshots/level-1/quote-generator.png" width="260" alt="Quote Generator" /><br /><sub><b>Quote Generator</b></sub></a></td>
+    <td align="center"><a href="https://weather-app-basicc.netlify.app/"><img src="./assets/screenshots/level-1/weather-app.png" width="260" alt="Weather App" /><br /><sub><b>Weather App</b></sub></a></td>
+    <td align="center"><a href="https://tic-tac-toeeeeeeeeee.netlify.app/"><img src="./assets/screenshots/level-1/tic-tac-toe.png" width="260" alt="Tic Tac Toe" /><br /><sub><b>Tic Tac Toe</b></sub></a></td>
+    <td align="center"><a href="https://countdown-timerrrr.netlify.app/"><img src="./assets/screenshots/level-1/countdown-timer.png" width="260" alt="Countdown Timer" /><br /><sub><b>Countdown Timer</b></sub></a></td>
+    <td align="center"><a href="https://simple-to-do-listt.netlify.app/"><img src="./assets/screenshots/level-1/todo-list.png" width="260" alt="Simple To-Do List" /><br /><sub><b>To-Do List</b></sub></a></td>
+    <td align="center"><a href="https://bmi-calculatorrrrr.netlify.app/"><img src="./assets/screenshots/level-1/bmi-calculator.png" width="260" alt="BMI Calculator" /><br /><sub><b>BMI Calculator</b></sub></a></td>
+    <td align="center"><a href="https://personal-portfolio-websiteee.netlify.app/"><img src="./assets/screenshots/level-1/portfolio.png" width="260" alt="Personal Portfolio" /><br /><sub><b>Portfolio</b></sub></a></td>
+  </tr>
+</table>
+</div>
 
 | Project | What you'll build | Guide | Links |
 |---------|-------------------|-------|-------|
