@@ -64,23 +64,21 @@ Plain JavaScript, the DOM, events, and clean simple UI. No frameworks. The goal 
 fluent in the language and the browser before adding any abstraction.
 
 <p align="center">
-  <a href="https://photo-galleryyyyy.netlify.app/"><img src="./assets/screenshots/level-1/photo-gallery.png" width="280" height="175" alt="Photo Gallery" /></a>&nbsp;
-  <a href="https://basic-calculatorrrr.netlify.app/"><img src="./assets/screenshots/level-1/calculator.png" width="280" height="175" alt="Basic Calculator" /></a>&nbsp;
-  <a href="https://memory-gameeeeee.netlify.app/"><img src="./assets/screenshots/level-1/memory-game.png" width="280" height="175" alt="Memory Game" /></a>
+  <a href="https://photo-galleryyyyy.netlify.app/"><img src="./assets/screenshots/level-1/photo-gallery.png" width="180" height="112" alt="Photo Gallery" /></a>&nbsp;
+  <a href="https://basic-calculatorrrr.netlify.app/"><img src="./assets/screenshots/level-1/calculator.png" width="180" height="112" alt="Basic Calculator" /></a>&nbsp;
+  <a href="https://memory-gameeeeee.netlify.app/"><img src="./assets/screenshots/level-1/memory-game.png" width="180" height="112" alt="Memory Game" /></a>&nbsp;
+  <a href="https://type-speed-testt.netlify.app/"><img src="./assets/screenshots/level-1/type-speed-test.png" width="180" height="112" alt="Type Speed Test" /></a>&nbsp;
+  <a href="https://quote-generatorrrrr.netlify.app/"><img src="./assets/screenshots/level-1/quote-generator.png" width="180" height="112" alt="Quote Generator" /></a>
 </p>
 <p align="center">
-  <a href="https://type-speed-testt.netlify.app/"><img src="./assets/screenshots/level-1/type-speed-test.png" width="280" height="175" alt="Type Speed Test" /></a>&nbsp;
-  <a href="https://quote-generatorrrrr.netlify.app/"><img src="./assets/screenshots/level-1/quote-generator.png" width="280" height="175" alt="Quote Generator" /></a>&nbsp;
-  <a href="https://weather-app-basicc.netlify.app/"><img src="./assets/screenshots/level-1/weather-app.png" width="280" height="175" alt="Weather App" /></a>
+  <a href="https://weather-app-basicc.netlify.app/"><img src="./assets/screenshots/level-1/weather-app.png" width="180" height="112" alt="Weather App" /></a>&nbsp;
+  <a href="https://tic-tac-toeeeeeeeeee.netlify.app/"><img src="./assets/screenshots/level-1/tic-tac-toe.png" width="180" height="112" alt="Tic Tac Toe" /></a>&nbsp;
+  <a href="https://countdown-timerrrr.netlify.app/"><img src="./assets/screenshots/level-1/countdown-timer.png" width="180" height="112" alt="Countdown Timer" /></a>&nbsp;
+  <a href="https://simple-to-do-listt.netlify.app/"><img src="./assets/screenshots/level-1/todo-list.png" width="180" height="112" alt="Simple To-Do List" /></a>&nbsp;
+  <a href="https://bmi-calculatorrrrr.netlify.app/"><img src="./assets/screenshots/level-1/bmi-calculator.png" width="180" height="112" alt="BMI Calculator" /></a>
 </p>
 <p align="center">
-  <a href="https://tic-tac-toeeeeeeeeee.netlify.app/"><img src="./assets/screenshots/level-1/tic-tac-toe.png" width="280" height="175" alt="Tic Tac Toe" /></a>&nbsp;
-  <a href="https://countdown-timerrrr.netlify.app/"><img src="./assets/screenshots/level-1/countdown-timer.png" width="280" height="175" alt="Countdown Timer" /></a>&nbsp;
-  <a href="https://simple-to-do-listt.netlify.app/"><img src="./assets/screenshots/level-1/todo-list.png" width="280" height="175" alt="Simple To-Do List" /></a>
-</p>
-<p align="center">
-  <a href="https://bmi-calculatorrrrr.netlify.app/"><img src="./assets/screenshots/level-1/bmi-calculator.png" width="280" height="175" alt="BMI Calculator" /></a>&nbsp;
-  <a href="https://personal-portfolio-websiteee.netlify.app/"><img src="./assets/screenshots/level-1/portfolio.png" width="280" height="175" alt="Personal Portfolio" /></a>
+  <a href="https://personal-portfolio-websiteee.netlify.app/"><img src="./assets/screenshots/level-1/portfolio.png" width="180" height="112" alt="Personal Portfolio" /></a>
 </p>
 
 | Project | What you'll build | Guide | Links |
