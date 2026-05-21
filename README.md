@@ -201,6 +201,33 @@ middleware, queues. This is where you become a backend developer.
 MongoDB, Express, React, Node — end to end. This is the level that takes you from
 **junior to mid-level**. By the end you can design, build, and ship a complete product.
 
+<p align="center">
+  <a href="https://to-do-mernn.netlify.app/login"><img src="./assets/screenshots/level-4/todo-mern.png" width="19%" alt="To-Do MERN" /></a>
+  <a href="https://notes-mernn.netlify.app/"><img src="./assets/screenshots/level-4/notes-mern.png" width="19%" alt="Notes MERN" /></a>
+  <a href="https://simple-blog-mernn.netlify.app/"><img src="./assets/screenshots/level-4/simple-blog.png" width="19%" alt="Simple Blog MERN" /></a>
+  <a href="https://weather-mern.netlify.app/"><img src="./assets/screenshots/level-4/weather-mern.png" width="19%" alt="Weather App" /></a>
+  <a href="https://user-authentication-systemm.netlify.app/"><img src="./assets/screenshots/level-4/auth-system.png" width="19%" alt="Auth System" /></a>
+</p>
+<p align="center">
+  <a href="https://expense-tracker-mernn.netlify.app/"><img src="./assets/screenshots/level-4/expense-tracker.png" width="19%" alt="Expense Tracker" /></a>
+  <a href="https://blog-mernn.netlify.app/"><img src="./assets/screenshots/level-4/blog-mern.png" width="19%" alt="Blog MERN" /></a>
+  <a href="https://recipe-mernn.netlify.app/"><img src="./assets/screenshots/level-4/recipe-mern.png" width="19%" alt="Recipe App" /></a>
+  <a href="https://movie-databasee.netlify.app/"><img src="./assets/screenshots/level-4/movie-database.png" width="19%" alt="Movie Database" /></a>
+  <a href="https://portfolio-with-admin-panel.netlify.app/"><img src="./assets/screenshots/level-4/portfolio-admin.png" width="19%" alt="Portfolio Admin" /></a>
+</p>
+<p align="center">
+  <a href="https://event-booking-systemm.netlify.app/"><img src="./assets/screenshots/level-4/event-booking.png" width="19%" alt="Event Booking" /></a>
+  <a href="https://job-board-with-company-user-dashboard.netlify.app/"><img src="./assets/screenshots/level-4/job-board.png" width="19%" alt="Job Board" /></a>
+  <a href="https://chat-app-mernn.netlify.app/"><img src="./assets/screenshots/level-4/chat-app.png" width="19%" alt="Chat App" /></a>
+  <a href="https://social-media-platformm.netlify.app/"><img src="./assets/screenshots/level-4/social-media.png" width="19%" alt="Social Media" /></a>
+  <a href="https://lms-mernn.netlify.app/"><img src="./assets/screenshots/level-4/lms-mern.png" width="19%" alt="LMS" /></a>
+</p>
+<p align="center">
+  <a href="https://video-streaming-platformm.netlify.app/"><img src="./assets/screenshots/level-4/video-streaming.png" width="19%" alt="Video Streaming" /></a>
+  <a href="https://online-code-editorr.netlify.app/"><img src="./assets/screenshots/level-4/code-editor.png" width="19%" alt="Code Editor" /></a>
+  <a href="https://saas-dashboard-template.netlify.app/"><img src="./assets/screenshots/level-4/saas-dashboard.png" width="19%" alt="SaaS Dashboard" /></a>
+</p>
+
 | Project | What you'll build | Guide | Links |
 |---------|-------------------|-------|-------|
 | ✅ To-Do MERN | Full CRUD across React + Express + Mongo | [Guide](./docs/level-4/to-do-mern.md) | [Code](https://github.com/Serkanbyx/to-do-mern) · [Demo](https://to-do-mernn.netlify.app/login) |
