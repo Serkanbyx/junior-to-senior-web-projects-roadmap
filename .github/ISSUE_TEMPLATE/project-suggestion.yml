@@ -1,0 +1,44 @@
+name: Project Suggestion
+description: Propose a new project to add to the roadmap
+labels: ["enhancement", "suggestion"]
+body:
+  - type: dropdown
+    id: level
+    attributes:
+      label: Which level does this project belong to?
+      options:
+        - Level 1 — Beginner Frontend (Vanilla JS, HTML, CSS)
+        - Level 2 — Intermediate Frontend (React, TypeScript, APIs)
+        - Level 3 — Backend Fundamentals (Node.js, Express, databases)
+        - Level 4 — Fullstack MERN (React + Express + MongoDB)
+        - Level 5 — Senior-Level Systems (distributed, AI, security)
+    validations:
+      required: true
+
+  - type: input
+    id: project-name
+    attributes:
+      label: Project name
+      placeholder: e.g., Real-time Auction System
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-it-teaches
+    attributes:
+      label: What skill does this project teach?
+      placeholder: "e.g., WebSocket bidding, race condition handling, countdown timers"
+    validations:
+      required: true
+
+  - type: textarea
+    id: why-this-level
+    attributes:
+      label: Why does it belong at this level?
+      placeholder: Explain why this project fits the difficulty and skills of the chosen level
+
+  - type: textarea
+    id: similar-projects
+    attributes:
+      label: Similar real-world apps
+      placeholder: "e.g., eBay auctions, StockX, charity auction platforms"

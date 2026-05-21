@@ -1,0 +1,49 @@
+name: Broken Link
+description: Report a dead or incorrect link in the README or a build guide
+labels: ["bug", "link"]
+body:
+  - type: dropdown
+    id: level
+    attributes:
+      label: Level
+      options:
+        - Level 1 — Beginner Frontend
+        - Level 2 — Intermediate Frontend
+        - Level 3 — Backend Fundamentals
+        - Level 4 — Fullstack MERN
+        - Level 5 — Senior-Level Systems
+    validations:
+      required: true
+
+  - type: input
+    id: project
+    attributes:
+      label: Project name
+      placeholder: e.g., To-Do MERN
+    validations:
+      required: true
+
+  - type: dropdown
+    id: link-type
+    attributes:
+      label: Which link is broken?
+      options:
+        - Live Demo
+        - Source Code (GitHub repo)
+        - Build Guide
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Broken URL
+      placeholder: https://...
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: What happens when you visit the link?
+      placeholder: e.g., 404 page, timeout, wrong redirect...

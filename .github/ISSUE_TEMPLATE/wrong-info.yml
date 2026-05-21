@@ -1,0 +1,46 @@
+name: Wrong Information
+description: Report incorrect tech stack, outdated info, or factual errors in a build guide
+labels: ["bug", "guide"]
+body:
+  - type: dropdown
+    id: level
+    attributes:
+      label: Level
+      options:
+        - Level 1 — Beginner Frontend
+        - Level 2 — Intermediate Frontend
+        - Level 3 — Backend Fundamentals
+        - Level 4 — Fullstack MERN
+        - Level 5 — Senior-Level Systems
+    validations:
+      required: true
+
+  - type: input
+    id: project
+    attributes:
+      label: Project name
+      placeholder: e.g., Expense Tracker MERN
+    validations:
+      required: true
+
+  - type: input
+    id: guide-file
+    attributes:
+      label: Guide file path
+      placeholder: e.g., docs/level-4/expense-tracker-mern.md
+    validations:
+      required: true
+
+  - type: textarea
+    id: whats-wrong
+    attributes:
+      label: What is incorrect?
+      placeholder: "e.g., Guide says MongoDB but the project actually uses PostgreSQL with Prisma"
+    validations:
+      required: true
+
+  - type: textarea
+    id: correct-info
+    attributes:
+      label: What should it say instead?
+      placeholder: Provide the correct information if you know it
