@@ -255,6 +255,11 @@ Distributed systems, real-time architecture, AI/ML integration, security, and bl
 These projects are about **architectural reasoning** — the kind of work that ends the
 "junior" conversation for good.
 
+<p align="center">
+  <a href="https://multiplayer-game-backend-nu.vercel.app"><img src="./assets/screenshots/level-5/multiplayer-game.png" width="45%" alt="Multiplayer Game Backend" /></a>
+  <a href="https://vehicle-tracking-system-lemon.vercel.app"><img src="./assets/screenshots/level-5/vehicle-tracking.png" width="45%" alt="Vehicle Tracking System" /></a>
+</p>
+
 | Project | What you'll build | Guide | Links |
 |---------|-------------------|-------|-------|
 | ✅ Multiplayer Game Backend | Authoritative server, state sync, latency handling | [Guide](./docs/level-5/multiplayer-game-backend.md) | [Code](https://github.com/Serkanbyx/multiplayer-game-backend) · [Demo](https://multiplayer-game-backend-nu.vercel.app) |
