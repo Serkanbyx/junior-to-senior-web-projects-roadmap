@@ -66,17 +66,17 @@ fluent in the language and the browser before adding any abstraction.
 <div align="center">
 <table>
   <tr>
-    <td align="center"><a href="https://photo-galleryyyyy.netlify.app/"><img src="./assets/screenshots/level-1/photo-gallery.png" width="260" alt="Photo Gallery" /><br /><sub><b>Photo Gallery</b></sub></a></td>
-    <td align="center"><a href="https://basic-calculatorrrr.netlify.app/"><img src="./assets/screenshots/level-1/calculator.png" width="260" alt="Basic Calculator" /><br /><sub><b>Calculator</b></sub></a></td>
-    <td align="center"><a href="https://memory-gameeeeee.netlify.app/"><img src="./assets/screenshots/level-1/memory-game.png" width="260" alt="Memory Game" /><br /><sub><b>Memory Game</b></sub></a></td>
-    <td align="center"><a href="https://type-speed-testt.netlify.app/"><img src="./assets/screenshots/level-1/type-speed-test.png" width="260" alt="Type Speed Test" /><br /><sub><b>Type Speed Test</b></sub></a></td>
-    <td align="center"><a href="https://quote-generatorrrrr.netlify.app/"><img src="./assets/screenshots/level-1/quote-generator.png" width="260" alt="Quote Generator" /><br /><sub><b>Quote Generator</b></sub></a></td>
-    <td align="center"><a href="https://weather-app-basicc.netlify.app/"><img src="./assets/screenshots/level-1/weather-app.png" width="260" alt="Weather App" /><br /><sub><b>Weather App</b></sub></a></td>
-    <td align="center"><a href="https://tic-tac-toeeeeeeeeee.netlify.app/"><img src="./assets/screenshots/level-1/tic-tac-toe.png" width="260" alt="Tic Tac Toe" /><br /><sub><b>Tic Tac Toe</b></sub></a></td>
-    <td align="center"><a href="https://countdown-timerrrr.netlify.app/"><img src="./assets/screenshots/level-1/countdown-timer.png" width="260" alt="Countdown Timer" /><br /><sub><b>Countdown Timer</b></sub></a></td>
-    <td align="center"><a href="https://simple-to-do-listt.netlify.app/"><img src="./assets/screenshots/level-1/todo-list.png" width="260" alt="Simple To-Do List" /><br /><sub><b>To-Do List</b></sub></a></td>
-    <td align="center"><a href="https://bmi-calculatorrrrr.netlify.app/"><img src="./assets/screenshots/level-1/bmi-calculator.png" width="260" alt="BMI Calculator" /><br /><sub><b>BMI Calculator</b></sub></a></td>
-    <td align="center"><a href="https://personal-portfolio-websiteee.netlify.app/"><img src="./assets/screenshots/level-1/portfolio.png" width="260" alt="Personal Portfolio" /><br /><sub><b>Portfolio</b></sub></a></td>
+    <td align="center"><a href="https://photo-galleryyyyy.netlify.app/"><img src="./assets/screenshots/level-1/photo-gallery.png" width="260" height="160" alt="Photo Gallery" /><br /><sub><b>Photo Gallery</b></sub></a></td>
+    <td align="center"><a href="https://basic-calculatorrrr.netlify.app/"><img src="./assets/screenshots/level-1/calculator.png" width="260" height="160" alt="Basic Calculator" /><br /><sub><b>Calculator</b></sub></a></td>
+    <td align="center"><a href="https://memory-gameeeeee.netlify.app/"><img src="./assets/screenshots/level-1/memory-game.png" width="260" height="160" alt="Memory Game" /><br /><sub><b>Memory Game</b></sub></a></td>
+    <td align="center"><a href="https://type-speed-testt.netlify.app/"><img src="./assets/screenshots/level-1/type-speed-test.png" width="260" height="160" alt="Type Speed Test" /><br /><sub><b>Type Speed Test</b></sub></a></td>
+    <td align="center"><a href="https://quote-generatorrrrr.netlify.app/"><img src="./assets/screenshots/level-1/quote-generator.png" width="260" height="160" alt="Quote Generator" /><br /><sub><b>Quote Generator</b></sub></a></td>
+    <td align="center"><a href="https://weather-app-basicc.netlify.app/"><img src="./assets/screenshots/level-1/weather-app.png" width="260" height="160" alt="Weather App" /><br /><sub><b>Weather App</b></sub></a></td>
+    <td align="center"><a href="https://tic-tac-toeeeeeeeeee.netlify.app/"><img src="./assets/screenshots/level-1/tic-tac-toe.png" width="260" height="160" alt="Tic Tac Toe" /><br /><sub><b>Tic Tac Toe</b></sub></a></td>
+    <td align="center"><a href="https://countdown-timerrrr.netlify.app/"><img src="./assets/screenshots/level-1/countdown-timer.png" width="260" height="160" alt="Countdown Timer" /><br /><sub><b>Countdown Timer</b></sub></a></td>
+    <td align="center"><a href="https://simple-to-do-listt.netlify.app/"><img src="./assets/screenshots/level-1/todo-list.png" width="260" height="160" alt="Simple To-Do List" /><br /><sub><b>To-Do List</b></sub></a></td>
+    <td align="center"><a href="https://bmi-calculatorrrrr.netlify.app/"><img src="./assets/screenshots/level-1/bmi-calculator.png" width="260" height="160" alt="BMI Calculator" /><br /><sub><b>BMI Calculator</b></sub></a></td>
+    <td align="center"><a href="https://personal-portfolio-websiteee.netlify.app/"><img src="./assets/screenshots/level-1/portfolio.png" width="260" height="160" alt="Personal Portfolio" /><br /><sub><b>Portfolio</b></sub></a></td>
   </tr>
 </table>
 </div>
