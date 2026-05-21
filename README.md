@@ -101,6 +101,31 @@ fluent in the language and the browser before adding any abstraction.
 Real APIs, client-side state, responsive design, and a couple of games for logic practice.
 By the end of this level you can call yourself a junior frontend developer.
 
+<p align="center">
+  <a href="https://recipe-web-appp.netlify.app/"><img src="./assets/screenshots/level-2/recipe-app.png" width="19%" alt="Recipe App" /></a>
+  <a href="https://stock-market-dashboarddd.netlify.app/"><img src="./assets/screenshots/level-2/stock-market.png" width="19%" alt="Stock Market Dashboard" /></a>
+  <a href="https://real-estate-listingg.netlify.app/"><img src="./assets/screenshots/level-2/real-estate.png" width="19%" alt="Real Estate Listing" /></a>
+  <a href="https://music-playerrrrr.netlify.app/player"><img src="./assets/screenshots/level-2/music-player.png" width="19%" alt="Music Player" /></a>
+  <a href="https://fitness-trackerrrrr.netlify.app/dashboard"><img src="./assets/screenshots/level-2/fitness-tracker.png" width="19%" alt="Fitness Tracker" /></a>
+</p>
+<p align="center">
+  <a href="https://e-commerce-frontendd.netlify.app/"><img src="./assets/screenshots/level-2/e-commerce.png" width="19%" alt="E-commerce Frontend" /></a>
+  <a href="https://social-media-dashboardd.netlify.app/dashboard"><img src="./assets/screenshots/level-2/social-media-dashboard.png" width="19%" alt="Social Media Dashboard" /></a>
+  <a href="https://interactive-mappp.netlify.app/"><img src="./assets/screenshots/level-2/interactive-map.png" width="19%" alt="Interactive Map" /></a>
+  <a href="https://flappy-birddddd.netlify.app/"><img src="./assets/screenshots/level-2/flappy-bird.png" width="19%" alt="Flappy Bird" /></a>
+  <a href="https://basic-chess-board-logic.netlify.app/"><img src="./assets/screenshots/level-2/chess.png" width="19%" alt="Chess Board" /></a>
+</p>
+<p align="center">
+  <a href="https://weather-app-advancedd.netlify.app/"><img src="./assets/screenshots/level-2/weather-app.png" width="19%" alt="Weather App API" /></a>
+  <a href="https://expense-trackerrrrrrrr.netlify.app/"><img src="./assets/screenshots/level-2/expense-tracker.png" width="19%" alt="Expense Tracker" /></a>
+  <a href="https://notes-web-apppp.netlify.app/"><img src="./assets/screenshots/level-2/notes-app.png" width="19%" alt="Notes App" /></a>
+  <a href="https://chat-uiii.netlify.app/"><img src="./assets/screenshots/level-2/chat-ui.png" width="19%" alt="Chat UI" /></a>
+  <a href="https://travel-plannerrr.netlify.app/"><img src="./assets/screenshots/level-2/travel-planner.png" width="19%" alt="Travel Planner" /></a>
+</p>
+<p align="center">
+  <a href="https://analytics-dashboardd.netlify.app/login"><img src="./assets/screenshots/level-2/analytics-dashboard.png" width="19%" alt="Analytics Dashboard" /></a>
+</p>
+
 | Project | What you'll build | Guide | Links |
 |---------|-------------------|-------|-------|
 | ✅ Weather App (API) | `fetch`, async/await, API keys, error states | [Guide](./docs/level-2/weather-app-api.md) | [Code](https://github.com/Serkanbyx/weather-app-advanced) · [Demo](https://weather-app-advancedd.netlify.app/) |
