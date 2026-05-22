@@ -418,6 +418,8 @@ Built and maintained by **Serkan** — [GitHub](https://github.com/Serkanbyx)
 
 If this roadmap helped you, a ⭐ helps other developers find it.
 
+[![Share on X](https://img.shields.io/badge/Share_on-X-000000?style=flat-square&logo=x)](https://twitter.com/intent/tweet?text=A%20structured%2C%205-level%20roadmap%20of%2070%2B%20real-world%20web%20projects%20%E2%80%94%20from%20JS%20basics%20to%20senior-level%20systems.%20Build%20guides%2C%20source%20code%2C%20and%20live%20demos%20included.&url=https%3A%2F%2Fgithub.com%2FSerkanbyx%2Fjunior-to-senior-web-projects) [![Share on Reddit](https://img.shields.io/badge/Share_on-Reddit-FF4500?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2FSerkanbyx%2Fjunior-to-senior-web-projects&title=A%20structured%2C%205-level%20roadmap%20of%2070%2B%20real-world%20web%20projects%20%E2%80%94%20from%20JS%20basics%20to%20senior-level%20systems)
+
 ## License
 
 Released under the [MIT License](./LICENSE). Use it, fork it, learn from it.
