@@ -113,6 +113,24 @@ fluent in the language and the browser before adding any abstraction.
 Real APIs, client-side state, responsive design, and a couple of games for logic practice.
 By the end of this level you can call yourself a junior frontend developer.
 
+**Skills you'll gain:**
+
+- React + TypeScript + Vite — modern frontend toolchain from scratch
+- State management with Zustand (simple) and Redux Toolkit (complex — slices, thunks, selectors)
+- Data visualization with Recharts — line, bar, pie, and area charts
+- Form validation with React Hook Form + Zod schema definitions
+- Accessible UI components with Radix UI, Headless UI & shadcn/ui pattern
+- Map integration with Leaflet + react-leaflet (markers, routes, geospatial filtering)
+- Server state & caching with TanStack React Query
+- Drag-and-drop with dnd-kit — sortable lists, cross-container moves
+- HTML5 Canvas game loop — `requestAnimationFrame`, delta-time physics, collision detection
+- HTML5 Audio API — playback control, seekable progress, shuffle/repeat algorithms
+- Markdown rendering with react-markdown + remark-gfm
+- API key protection via Netlify Functions (serverless proxy)
+- PWA with vite-plugin-pwa + Workbox — offline caching, installability
+- XSS protection with DOMPurify for external API content
+- Complex algorithm design — chess move validation, check/checkmate detection
+
 <p align="center">
   <a href="https://recipe-web-appp.netlify.app/"><img src="./assets/screenshots/level-2/recipe-app.png" width="19%" alt="Recipe App" /></a>
   <a href="https://stock-market-dashboarddd.netlify.app/"><img src="./assets/screenshots/level-2/stock-market.png" width="19%" alt="Stock Market Dashboard" /></a>
