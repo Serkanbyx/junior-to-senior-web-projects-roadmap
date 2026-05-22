@@ -2,7 +2,7 @@
   <img src="./assets/banner.svg" alt="Junior to Senior Web Projects" width="100%" />
 </p>
 
-<h1 align="center">Junior → Senior Web Projects</h1>
+<h1 align="center">Junior → Senior Web Projects Roadmap</h1>
 
 <p align="center">
   A structured, 5-level roadmap of <strong>70+ real-world web projects</strong> that takes you from

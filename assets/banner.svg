@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 320" width="1280" height="320" role="img" aria-label="Junior to Senior Web Projects">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 320" width="1280" height="320" role="img" aria-label="Junior to Senior Web Projects Roadmap">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0A0A0F"/>
@@ -23,7 +23,7 @@
     Junior <tspan fill="#4047E6">→</tspan> Senior
   </text>
   <text x="440" y="210" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="58" font-weight="700" fill="#4047E6">
-    Web Projects
+    Web Projects <tspan fill="#F5F6FA" font-size="42">Roadmap</tspan>
   </text>
 
   <!-- subtitle -->
