@@ -320,6 +320,21 @@ Distributed systems, real-time architecture, AI/ML integration, security, and bl
 These projects are about **architectural reasoning** — the kind of work that ends the
 "junior" conversation for good.
 
+**Skills you'll gain:**
+
+- Authoritative server architecture — server validates all state changes, clients send intentions
+- Dual WebSocket channels — separate device ingest and dashboard streams for independent scaling
+- Hybrid storage — Redis for real-time state + PostgreSQL for persistent data
+- PostGIS geospatial queries — spatial indexes, polygon containment, distance calculations
+- NestJS modular backend architecture with TypeORM
+- Real-time map visualization — MapLibre GL with smooth marker interpolation
+- Matchmaking systems — Redis-backed queues with skill-based pairing
+- Reconnection resilience — grace periods with state recovery from Redis
+- Geofencing — boundary detection, enter/exit events, spatial alerting
+- Production monitoring — Sentry, structured logging (Pino), Better Stack
+- TypeScript monorepo with shared types for compile-time event safety
+- Drizzle ORM + TypeORM — type-safe database access across different architectures
+
 <p align="center">
   <a href="https://multiplayer-game-backend-nu.vercel.app"><img src="./assets/screenshots/level-5/multiplayer-game.png" width="45%" alt="Multiplayer Game Backend" /></a>
   <a href="https://vehicle-tracking-system-lemon.vercel.app"><img src="./assets/screenshots/level-5/vehicle-tracking.png" width="45%" alt="Vehicle Tracking System" /></a>
