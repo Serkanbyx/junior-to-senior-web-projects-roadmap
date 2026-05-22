@@ -46,44 +46,13 @@ If you finish a level, you can honestly claim the skill it represents. That is t
 
 ## Roadmap
 
-<table>
-  <tr>
-    <td align="center" width="20%">
-      <h3>🟢 Level 1</h3>
-      <strong>JS Fundamentals</strong><br/>
-      <sub>DOM, events, vanilla JS</sub><br/><br/>
-      <img src="https://img.shields.io/badge/11_projects-complete-2ecc71?style=flat-square" alt="11 projects" />
-    </td>
-    <td align="center" width="5%">→</td>
-    <td align="center" width="20%">
-      <h3>🔵 Level 2</h3>
-      <strong>Intermediate Frontend</strong><br/>
-      <sub>APIs, state, responsive UI</sub><br/><br/>
-      <img src="https://img.shields.io/badge/16_projects-complete-3498db?style=flat-square" alt="16 projects" />
-    </td>
-    <td align="center" width="5%">→</td>
-    <td align="center" width="20%">
-      <h3>🟡 Level 3</h3>
-      <strong>Backend Fundamentals</strong><br/>
-      <sub>Node, Express, databases</sub><br/><br/>
-      <img src="https://img.shields.io/badge/17_projects-complete-f1c40f?style=flat-square" alt="17 projects" />
-    </td>
-    <td align="center" width="5%">→</td>
-    <td align="center" width="20%">
-      <h3>🟠 Level 4</h3>
-      <strong>Fullstack MERN</strong><br/>
-      <sub>End-to-end products</sub><br/><br/>
-      <img src="https://img.shields.io/badge/18_projects-complete-e67e22?style=flat-square" alt="18 projects" />
-    </td>
-    <td align="center" width="5%">→</td>
-    <td align="center" width="20%">
-      <h3>🔴 Level 5</h3>
-      <strong>Senior Systems</strong><br/>
-      <sub>Distributed, AI, security</sub><br/><br/>
-      <img src="https://img.shields.io/badge/13_projects-in_progress-e74c3c?style=flat-square" alt="13 projects" />
-    </td>
-  </tr>
-</table>
+```mermaid
+flowchart LR
+    L1["🟢 Level 1\nJS Fundamentals\n11 projects ✅"] --> L2["🔵 Level 2\nIntermediate Frontend\n16 projects ✅"]
+    L2 --> L3["🟡 Level 3\nBackend Fundamentals\n17 projects ✅"]
+    L3 --> L4["🟠 Level 4\nFullstack MERN\n18 projects ✅"]
+    L4 --> L5["🔴 Level 5\nSenior Systems\n13 projects 🚧"]
+```
 
 > **Legend:** ✅ built & deployed · 🚧 planned / in progress
 
