@@ -44,6 +44,19 @@ If you finish a level, you can honestly claim the skill it represents. That is t
 4. **Write the README.** Treat every project's README as practice for technical communication — it matters as much as the code.
 5. **Move up only when comfortable.** A level is done when you could rebuild any project in it without a guide.
 
+## Find your starting level
+
+Not sure where to begin? Use the table below for a quick match, or take the
+[detailed self-assessment quiz](./docs/find-your-level.md) to be sure.
+
+| If you can honestly say… | Start at |
+|--------------------------|----------|
+| "I'm new to JavaScript or still learning the basics" | **[Level 1 — JS Fundamentals](#level-1--javascript-fundamentals)** |
+| "I can write vanilla JS but haven't consumed real APIs" | **[Level 2 — Intermediate Frontend](#level-2--intermediate-frontend)** |
+| "I build frontends comfortably but never touched Node or Express" | **[Level 3 — Backend Fundamentals](#level-3--backend-fundamentals)** |
+| "I know backend basics but haven't shipped a fullstack app" | **[Level 4 — Fullstack MERN](#level-4--fullstack-mern)** |
+| "I ship fullstack apps and want architecture-level challenges" | **[Level 5 — Senior-Level Systems](#level-5--senior-level-systems)** |
+
 ## Roadmap
 
 <p align="center">
@@ -326,14 +339,19 @@ These projects are about **architectural reasoning** — the kind of work that e
 - Dual WebSocket channels — separate device ingest and dashboard streams for independent scaling
 - Hybrid storage — Redis for real-time state + PostgreSQL for persistent data
 - PostGIS geospatial queries — spatial indexes, polygon containment, distance calculations
-- NestJS modular backend architecture with TypeORM
+- NestJS modular backend with TypeORM and Drizzle ORM
 - Real-time map visualization — MapLibre GL with smooth marker interpolation
-- Matchmaking systems — Redis-backed queues with skill-based pairing
+- Matchmaking and ride-matching — Redis-backed queues, geospatial pairing, dynamic pricing
 - Reconnection resilience — grace periods with state recovery from Redis
 - Geofencing — boundary detection, enter/exit events, spatial alerting
-- Production monitoring — Sentry, structured logging (Pino), Better Stack
+- IoT data pipelines — MQTT protocol, device telemetry ingestion, time-series storage
+- AI/ML integration — LLM context windows, streaming responses, collaborative filtering, embeddings
+- Computer vision & audio — face detection model integration, speech-to-text transcription APIs
+- Metrics & observability — Sentry, structured logging (Pino), alerting dashboards, uptime monitoring
+- Financial security — transaction isolation, audit logging, ACID compliance, fraud prevention
+- Blockchain fundamentals — smart contracts, immutable ledgers, cryptographic verification
+- Networking concepts — tunneling logic, encryption layers, VPN protocol simulation
 - TypeScript monorepo with shared types for compile-time event safety
-- Drizzle ORM + TypeORM — type-safe database access across different architectures
 
 <p align="center">
   <a href="https://multiplayer-game-backend-nu.vercel.app"><img src="./assets/screenshots/level-5/multiplayer-game.png" width="45%" alt="Multiplayer Game Backend" /></a>
