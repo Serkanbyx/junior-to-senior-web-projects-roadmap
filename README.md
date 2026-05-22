@@ -44,15 +44,46 @@ If you finish a level, you can honestly claim the skill it represents. That is t
 4. **Write the README.** Treat every project's README as practice for technical communication — it matters as much as the code.
 5. **Move up only when comfortable.** A level is done when you could rebuild any project in it without a guide.
 
-## Progress
+## Roadmap
 
-| Level | Focus | Status |
-|-------|-------|--------|
-| 1 | JavaScript fundamentals & simple UI | ✅ Complete |
-| 2 | Intermediate frontend — APIs, state, design | ✅ Complete |
-| 3 | Backend fundamentals — Node, Express, databases | ✅ Complete |
-| 4 | Fullstack MERN — junior → mid transition | ✅ Complete |
-| 5 | Senior-level — distributed, AI, security, blockchain | 🚧 In progress |
+<table>
+  <tr>
+    <td align="center" width="20%">
+      <h3>🟢 Level 1</h3>
+      <strong>JS Fundamentals</strong><br/>
+      <sub>DOM, events, vanilla JS</sub><br/><br/>
+      <img src="https://img.shields.io/badge/11_projects-complete-2ecc71?style=flat-square" alt="11 projects" />
+    </td>
+    <td align="center" width="5%">→</td>
+    <td align="center" width="20%">
+      <h3>🔵 Level 2</h3>
+      <strong>Intermediate Frontend</strong><br/>
+      <sub>APIs, state, responsive UI</sub><br/><br/>
+      <img src="https://img.shields.io/badge/16_projects-complete-3498db?style=flat-square" alt="16 projects" />
+    </td>
+    <td align="center" width="5%">→</td>
+    <td align="center" width="20%">
+      <h3>🟡 Level 3</h3>
+      <strong>Backend Fundamentals</strong><br/>
+      <sub>Node, Express, databases</sub><br/><br/>
+      <img src="https://img.shields.io/badge/17_projects-complete-f1c40f?style=flat-square" alt="17 projects" />
+    </td>
+    <td align="center" width="5%">→</td>
+    <td align="center" width="20%">
+      <h3>🟠 Level 4</h3>
+      <strong>Fullstack MERN</strong><br/>
+      <sub>End-to-end products</sub><br/><br/>
+      <img src="https://img.shields.io/badge/18_projects-complete-e67e22?style=flat-square" alt="18 projects" />
+    </td>
+    <td align="center" width="5%">→</td>
+    <td align="center" width="20%">
+      <h3>🔴 Level 5</h3>
+      <strong>Senior Systems</strong><br/>
+      <sub>Distributed, AI, security</sub><br/><br/>
+      <img src="https://img.shields.io/badge/13_projects-in_progress-e74c3c?style=flat-square" alt="13 projects" />
+    </td>
+  </tr>
+</table>
 
 > **Legend:** ✅ built & deployed · 🚧 planned / in progress
 
