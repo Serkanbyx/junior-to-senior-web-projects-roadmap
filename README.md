@@ -59,6 +59,22 @@ If you finish a level, you can honestly claim the skill it represents. That is t
 Plain JavaScript, the DOM, events, and clean simple UI. No frameworks. The goal is to be
 fluent in the language and the browser before adding any abstraction.
 
+**Skills you'll gain:**
+
+- DOM manipulation & event-driven UI (click, keydown, input, touch, drag)
+- State management with plain arrays and objects — the data → render cycle
+- CSS Grid, Flexbox & responsive layouts (masonry, mobile-first)
+- CSS 3D transforms & micro-animations (flip, fade, ripple effects)
+- Timer mechanics — `setInterval`, `Date.now()`, drift-safe countdowns
+- Form handling, input validation & conditional rendering
+- LocalStorage persistence, data hydration & JSON export/import
+- `fetch` + `async/await` for API consumption and error handling
+- Browser APIs: Intersection Observer, Web Speech, Web Audio, Drag and Drop
+- PWA fundamentals — Service Worker, manifest, offline caching
+- Accessibility (ARIA labels, keyboard navigation, WCAG 2.1 AA)
+- SEO essentials — Open Graph, JSON-LD structured data, semantic HTML
+- Algorithm thinking — Fisher-Yates shuffle, Shunting-yard expression parsing
+
 <p align="center">
   <a href="https://photo-galleryyyyy.netlify.app/"><img src="./assets/screenshots/level-1/photo-gallery.png" width="19%" alt="Photo Gallery" /></a>
   <a href="https://basic-calculatorrrr.netlify.app/"><img src="./assets/screenshots/level-1/calculator.png" width="19%" alt="Basic Calculator" /></a>
