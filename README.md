@@ -248,6 +248,24 @@ middleware, queues. This is where you become a backend developer.
 MongoDB, Express, React, Node — end to end. This is the level that takes you from
 **junior to mid-level**. By the end you can design, build, and ship a complete product.
 
+**Skills you'll gain:**
+
+- End-to-end MERN architecture — React ↔ Express ↔ MongoDB data flow
+- Monorepo structure with shared TypeScript + Zod schemas for end-to-end type safety
+- Role-based access control (RBAC) — multi-role dashboards with permission-gated UI
+- Dual JWT strategy — access + refresh token rotation with Axios request queuing
+- Real-time with Socket.io — dual REST + WebSocket, presence, typing, read receipts
+- Rich text & code editing — React Quill, Markdown + syntax highlighting, Monaco Editor
+- Real-time collaboration — Yjs CRDT for conflict-free concurrent editing
+- Video engineering — FFmpeg HLS transcoding, adaptive streaming with HLS.js
+- Animation polish — Framer Motion page transitions, scroll animations, stagger effects
+- Cloudinary upload pipelines — images, resumes, videos with MIME validation
+- Multi-tenancy — organization-scoped data, team invitations, subscription tiers
+- Atomic database operations — `findOneAndUpdate` for concurrent-safe booking
+- Content workflows — approval systems, state machines (6-state application pipeline)
+- Automated testing — Jest + Supertest (API), Vitest + React Testing Library (UI)
+- Deployment — Netlify + Render split, Docker on Fly.io, `render.yaml` configs
+
 <p align="center">
   <a href="https://to-do-mernn.netlify.app/login"><img src="./assets/screenshots/level-4/todo-mern.png" width="19%" alt="To-Do MERN" /></a>
   <a href="https://notes-mernn.netlify.app/"><img src="./assets/screenshots/level-4/notes-mern.png" width="19%" alt="Notes MERN" /></a>
