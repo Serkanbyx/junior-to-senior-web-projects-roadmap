@@ -44,6 +44,20 @@ If you finish a level, you can honestly claim the skill it represents. That is t
 4. **Write the README.** Treat every project's README as practice for technical communication — it matters as much as the code.
 5. **Move up only when comfortable.** A level is done when you could rebuild any project in it without a guide.
 
+## A note on AI tools
+
+AI coding assistants (Copilot, Cursor, ChatGPT) are part of modern development — but
+**when** you use them matters more than **whether** you use them.
+
+| Level | AI approach |
+|-------|-------------|
+| **1 – 2** | **Don't use AI.** Write every line yourself. You're building muscle memory for the language, the DOM, and the browser. If AI writes it for you, you skip the struggle that makes it stick. |
+| **3 – 4** | **Use AI as a pair programmer.** You design the architecture, write the core logic, and let AI help with boilerplate, debugging, and refactoring. Always understand what it generates before you commit it. |
+| **5** | **Use AI as a power tool and build with it.** Leverage AI for rapid prototyping, complex integrations, and code review — and build AI-powered products yourself (chatbots, recommendation engines, computer vision). |
+
+The rule of thumb: if you can't explain what the AI wrote, you're not ready to use it at
+that level yet.
+
 ## Find your starting level
 
 Not sure where to begin? Use the table below for a quick match, or take the

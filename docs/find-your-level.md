@@ -25,6 +25,8 @@ The first level where you **can't** check every box is where you should start.
 
 **All checked?** You can skip Level 1 → try Level 2.
 
+> **AI rule for this level:** Build everything yourself — no Copilot, no ChatGPT. The struggle is the lesson.
+
 ---
 
 ## Level 2 — Intermediate Frontend
@@ -43,6 +45,8 @@ The first level where you **can't** check every box is where you should start.
 - [ ] Structure a frontend project with clean file and folder organization
 
 **All checked?** You can skip Level 2 → try Level 3.
+
+> **AI rule for this level:** Still no AI. You need to internalize APIs, state, and layout before outsourcing them.
 
 ---
 
@@ -63,6 +67,8 @@ The first level where you **can't** check every box is where you should start.
 
 **All checked?** You can skip Level 3 → try Level 4.
 
+> **AI rule for this level:** Use AI as a pair programmer — you design the architecture, AI helps with boilerplate and debugging.
+
 ---
 
 ## Level 4 — Fullstack MERN
@@ -81,6 +87,8 @@ The first level where you **can't** check every box is where you should start.
 - [ ] Set up a CI/CD pipeline or at least automated deployments
 
 **All checked?** You can skip Level 4 → try Level 5.
+
+> **AI rule for this level:** AI handles the repetitive parts — you own the decisions, the data flow, and the deployment.
 
 ---
 
@@ -101,6 +109,8 @@ The first level where you **can't** check every box is where you should start.
 
 **Can't check them all?** This is where you belong. Welcome to Level 5.
 
+> **AI rule for this level:** Use AI as a power tool for rapid prototyping and code review — and start building AI-powered products yourself.
+
 ---
 
 ## Still not sure?
@@ -109,6 +119,9 @@ Start at the level where you checked **fewer than 7 out of 10 boxes**.
 It's better to repeat something easy than to skip something foundational.
 
 When in doubt, **start one level lower** than you think — confidence compounds.
+
+**On AI tools:** If you can't explain what the AI generated, you're not ready to use it
+at that level. See the [AI tools guide](../README.md#a-note-on-ai-tools) in the main README.
 
 ---
 
