@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/banner.svg" alt="Junior to Senior Web Projects" width="100%" />
+  <img src="./assets/banner.svg?v=2" alt="Junior to Senior Web Projects Roadmap" width="100%" />
 </p>
 
 <h1 align="center">Junior → Senior Web Projects Roadmap</h1>
