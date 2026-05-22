@@ -46,13 +46,9 @@ If you finish a level, you can honestly claim the skill it represents. That is t
 
 ## Roadmap
 
-```mermaid
-flowchart LR
-    L1["🟢 Level 1\nJS Fundamentals\n11 projects ✅"] --> L2["🔵 Level 2\nIntermediate Frontend\n16 projects ✅"]
-    L2 --> L3["🟡 Level 3\nBackend Fundamentals\n17 projects ✅"]
-    L3 --> L4["🟠 Level 4\nFullstack MERN\n18 projects ✅"]
-    L4 --> L5["🔴 Level 5\nSenior Systems\n13 projects 🚧"]
-```
+<p align="center">
+  <img src="./assets/roadmap.svg" alt="Roadmap — Level 1 through Level 5" width="100%" />
+</p>
 
 > **Legend:** ✅ built & deployed · 🚧 planned / in progress
 
