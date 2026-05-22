@@ -180,6 +180,23 @@ By the end of this level you can call yourself a junior frontend developer.
 Node.js, Express, and databases (MongoDB / PostgreSQL). REST design, authentication,
 middleware, queues. This is where you become a backend developer.
 
+**Skills you'll gain:**
+
+- Node.js + Express 5 server architecture with MVC pattern
+- REST API design — proper status codes, consistent error shapes, CRUD conventions
+- Authentication: JWT (stateless) and OAuth 2.0 with Passport.js (session-based)
+- Databases: SQLite (raw SQL), MongoDB (Mongoose), PostgreSQL (Prisma ORM + migrations)
+- Redis — caching (cache-aside pattern, TTL), distributed rate limiting, job queues
+- Input validation with express-validator and Joi
+- API documentation with Swagger (swagger-jsdoc + swagger-ui-express)
+- File uploads with Multer + Cloudinary (multipart handling, MIME validation)
+- Transactional email with Nodemailer (SMTP, templates, bulk delivery)
+- Background jobs with BullMQ — producer/worker pattern, retry/backoff, Bull Board monitoring
+- Real-time communication with Socket.io — rooms, typing indicators, online presence
+- Security hardening — Helmet, rate limiting (tiered + RFC headers), CORS, mongo-sanitize
+- Scheduled automation with node-cron and structured logging with Winston
+- Server-side pagination, full-text search, dynamic filtering & aggregation
+
 <p align="center">
   <a href="https://authentication-api-3bfr.onrender.com/"><img src="./assets/screenshots/level-3/authentication-api.png" width="19%" alt="Authentication API" /></a>
   <a href="https://crud-user-api-slmp.onrender.com/"><img src="./assets/screenshots/level-3/crud-user-api.png" width="19%" alt="CRUD User API" /></a>
