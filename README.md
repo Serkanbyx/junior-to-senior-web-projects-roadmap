@@ -43,6 +43,7 @@ If you finish a level, you can honestly claim the skill it represents. That is t
 3. **Ship every project.** Each one gets its own repo and a live deployment. A project that isn't deployed doesn't count.
 4. **Write the README.** Treat every project's README as practice for technical communication — it matters as much as the code.
 5. **Move up only when comfortable.** A level is done when you could rebuild any project in it without a guide.
+6. **Track your progress.** [Fork this repo](https://github.com/Serkanbyx/junior-to-senior-web-projects/fork) and use the [Progress Tracker](./docs/PROGRESS.md) to check off projects as you go.
 
 ## A note on AI tools
 
@@ -400,6 +401,8 @@ junior-to-senior-web-projects/
 │   └── banner.svg
 └── docs/
     ├── TEMPLATE.md       ← copy this for every new project guide
+    ├── PROGRESS.md        ← fork & track your progress
+    ├── find-your-level.md ← self-assessment quiz
     ├── level-1/ … level-5/
     │   └── <project>.md  ← one short build guide per project
 ```

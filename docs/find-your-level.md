@@ -3,7 +3,8 @@
 > A quick self-assessment to help you skip what you already know and start
 > where the real learning begins.
 
-**How it works:** Go through each level's checklist from top to bottom.
+**How it works:** Fork this repo, then go through each level's checklist from top to bottom.
+Click the checkboxes directly on GitHub to mark the skills you already have.
 The first level where you **can't** check every box is where you should start.
 
 ---
@@ -124,5 +125,7 @@ When in doubt, **start one level lower** than you think — confidence compounds
 at that level. See the [AI tools guide](../README.md#a-note-on-ai-tools) in the main README.
 
 ---
+
+Found your level? Start tracking your builds with the [Progress Tracker](./PROGRESS.md).
 
 [← Back to Roadmap](../README.md)
