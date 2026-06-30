@@ -369,15 +369,16 @@ These projects are about **architectural reasoning** — the kind of work that e
 - TypeScript monorepo with shared types for compile-time event safety
 
 <p align="center">
-  <a href="https://multiplayer-game-backend-nu.vercel.app"><img src="./assets/screenshots/level-5/multiplayer-game.png" width="45%" alt="Multiplayer Game Backend" /></a>
-  <a href="https://vehicle-tracking-system-lemon.vercel.app"><img src="./assets/screenshots/level-5/vehicle-tracking.png" width="45%" alt="Vehicle Tracking System" /></a>
+  <a href="https://multiplayer-game-backend-nu.vercel.app"><img src="./assets/screenshots/level-5/multiplayer-game.png" width="30%" alt="Multiplayer Game Backend" /></a>
+  <a href="https://vehicle-tracking-system-lemon.vercel.app"><img src="./assets/screenshots/level-5/vehicle-tracking.png" width="30%" alt="Vehicle Tracking System" /></a>
+  <a href="https://iot-dashboard-one-rouge.vercel.app/"><img src="./assets/screenshots/level-5/iot-dashboard.png" width="30%" alt="IoT Dashboard" /></a>
 </p>
 
 | Project | What you'll build | Guide | Links |
 |---------|-------------------|-------|-------|
 | ✅ Multiplayer Game Backend | Authoritative server, state sync, latency handling | [Guide](./docs/level-5/multiplayer-game-backend.md) | [Code](https://github.com/Serkanbyx/multiplayer-game-backend) · [Demo](https://multiplayer-game-backend-nu.vercel.app) |
 | ✅ Vehicle Tracking System | Real-time GPS streams, geofencing | [Guide](./docs/level-5/vehicle-tracking-system.md) | [Code](https://github.com/Serkanbyx/vehicle-tracking-system) · [Demo](https://vehicle-tracking-system-lemon.vercel.app) |
-| 🚧 IoT Dashboard | Device telemetry, MQTT, time-series data | [Guide](#) | [Code](#) · [Demo](#) |
+| ✅ IoT Dashboard | Device telemetry, MQTT, time-series data | [Guide](./docs/level-5/iot-dashboard.md) | [Code](https://github.com/Serkanbyx/iot-dashboard) · [Demo](https://iot-dashboard-one-rouge.vercel.app/) |
 | 🚧 Ride-Sharing Backend | Matching, geospatial queries, pricing | [Guide](#) | [Code](#) · [Demo](#) |
 | 🚧 Remote Monitoring System | Metrics ingestion, alerting, dashboards | [Guide](#) | [Code](#) · [Demo](#) |
 | 🚧 AI-Powered Chatbot | LLM integration, context windows, streaming | [Guide](#) | [Code](#) · [Demo](#) |

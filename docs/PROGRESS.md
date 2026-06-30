@@ -101,7 +101,7 @@ Not sure where to start? Take the [self-assessment quiz](./find-your-level.md) f
 
 - [ ] Multiplayer Game Backend — Authoritative server, state sync, latency handling
 - [ ] Vehicle Tracking System — Real-time GPS streams, geofencing
-- [ ] IoT Dashboard — Device telemetry, MQTT, time-series data
+- [x] IoT Dashboard — Device telemetry, MQTT, time-series data
 - [ ] Ride-Sharing Backend — Matching, geospatial queries, pricing
 - [ ] Remote Monitoring System — Metrics ingestion, alerting, dashboards
 - [ ] AI-Powered Chatbot — LLM integration, context windows, streaming
